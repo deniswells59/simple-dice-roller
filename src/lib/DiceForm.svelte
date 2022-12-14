@@ -6,9 +6,10 @@
 
   const onClick = () => {
     value = rollDice({
-      diceType: DiceType.D4,
-      modifierOperation: ModifierOperation.SUBTRACT,
-      modifier: 1,
+      numberOfDice: 2,
+      diceType: DiceType.D6,
+      modifierOperation: ModifierOperation.ADD,
+      modifier: 2,
     });
   };
 </script>

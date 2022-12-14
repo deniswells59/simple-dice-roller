@@ -11,7 +11,8 @@ const getRandomByMinMax = (min: number, max: DiceType): number => {
 };
 
 const rollSingleDice = (diceMax: DiceType): number => {
-  return getRandomByMinMax(1, diceMax);
+  const value = getRandomByMinMax(1, diceMax);
+  return value;
 };
 
 enum DiceType {
@@ -49,15 +50,21 @@ const modifyRoll = (
 };
 
 const rollDice = ({
+  numberOfDice = 1,
   diceType,
   modifierOperation = ModifierOperation.NONE,
   modifier = 0,
 }: {
+  numberOfDice?: number;
   diceType: DiceType;
-  modifierOperation: ModifierOperation;
-  modifier: number;
+  modifierOperation?: ModifierOperation;
+  modifier?: number;
 }): number => {
-  const roll = rollSingleDice(diceType);
+  let roll = 0;
+  for (let i = numberOfDice; i > 0; i--) {
+    roll += rollSingleDice(diceType);
+  }
+
   const modifiedRoll = modifyRoll(roll, modifierOperation, modifier);
 
   return modifiedRoll;
