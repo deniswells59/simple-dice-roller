@@ -1,3 +1,5 @@
+import { DiceType, ModifierOperation, Roll } from '../types/Roll';
+
 const getRandomByMinMax = (min: number, max: DiceType): number => {
   const randomBuffer = new Uint32Array(1);
 
@@ -14,23 +16,6 @@ const rollSingleDice = (diceMax: DiceType): number => {
   const value = getRandomByMinMax(1, diceMax);
   return value;
 };
-
-enum DiceType {
-  D2 = 2,
-  D4 = 4,
-  D6 = 6,
-  D8 = 8,
-  D10 = 10,
-  D12 = 12,
-  D20 = 20,
-  D100 = 100,
-}
-
-enum ModifierOperation {
-  ADD = 'ADD',
-  SUBTRACT = 'SUBTRACT',
-  NONE = 'NONE',
-}
 
 const modifyRoll = (
   roll: number,
@@ -49,7 +34,7 @@ const modifyRoll = (
   }
 };
 
-const rollDice = ({
+export const rollDice = ({
   numberOfDice = 1,
   diceType,
   modifierOperation = ModifierOperation.NONE,
@@ -59,7 +44,7 @@ const rollDice = ({
   diceType: DiceType;
   modifierOperation?: ModifierOperation;
   modifier?: number;
-}): any => {
+}): Roll => {
   // Creates Array of roll values based on number of dice needed to be rolled
   const emptyArray = Array.from({ length: numberOfDice });
   const rollList = emptyArray.map(() => rollSingleDice(diceType));
@@ -74,8 +59,6 @@ const rollDice = ({
     value: modifiedRollValue,
     list: rollList,
     modifierOperation,
-    modifier
+    modifier,
   };
 };
-
-export { rollDice, DiceType, ModifierOperation };
