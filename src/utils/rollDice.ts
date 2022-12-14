@@ -59,15 +59,23 @@ const rollDice = ({
   diceType: DiceType;
   modifierOperation?: ModifierOperation;
   modifier?: number;
-}): number => {
-  let roll = 0;
-  for (let i = numberOfDice; i > 0; i--) {
-    roll += rollSingleDice(diceType);
-  }
+}): any => {
+  // Creates Array of roll values based on number of dice needed to be rolled
+  const emptyArray = Array.from({ length: numberOfDice });
+  const rollList = emptyArray.map(() => rollSingleDice(diceType));
 
-  const modifiedRoll = modifyRoll(roll, modifierOperation, modifier);
+  // Adds them all up
+  const rollValue = rollList.reduce((roll, acc) => acc + roll, 0);
 
-  return modifiedRoll;
+  // Includes any modifiers
+  const modifiedRollValue = modifyRoll(rollValue, modifierOperation, modifier);
+
+  return {
+    value: modifiedRollValue,
+    list: rollList,
+    modifierOperation,
+    modifier
+  };
 };
 
 export { rollDice, DiceType, ModifierOperation };

@@ -5,12 +5,14 @@
   let value: number = 0;
 
   const onClick = () => {
-    value = rollDice({
+    const roll = rollDice({
       numberOfDice: 2,
       diceType: DiceType.D6,
       modifierOperation: ModifierOperation.ADD,
       modifier: 2,
     });
+
+    value = roll.value;
   };
 </script>
 
