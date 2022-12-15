@@ -1,8 +1,9 @@
 <script lang="ts">
   import { rolls } from '../store';
   import type { Roll } from '../types/Roll';
+  import Button from './Button.svelte';
 
-  const ROLL_LIST_TIMEOUT = 100000;
+  const ROLL_LIST_TIMEOUT = 8000;
   let showRollList = false;
   let rollListTimeoutID;
 
@@ -39,6 +40,6 @@
         </li>
       {/each}
     </ul>
-    <button on:click={() => closeRollList()}>Clear X</button>
+    <Button onClickHandler={() => closeRollList()} cssClass="border-0 w-auto">Clear X</Button>
   </div>
 {/if}
