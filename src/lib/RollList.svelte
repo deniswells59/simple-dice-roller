@@ -3,7 +3,7 @@
   import type { Roll } from '../types/Roll';
   import Button from './Button.svelte';
 
-  const ROLL_LIST_TIMEOUT = 8000;
+  const ROLL_LIST_TIMEOUT = 60000;
   let showRollList = false;
   let rollListTimeoutID;
 
@@ -32,7 +32,7 @@
     <ul class="flex flex-col items-end">
       {#each $rolls.slice(-3) as roll}
         <li
-          class="flex justify-center items-center shadow-lg my-4 border last:w-80 last:h-16 w-40 h-8"
+          class="flex justify-center items-center shadow-lg my-4 border bg-black text-white last:w-80 last:h-16 w-40 h-8"
         >
           <div>
             <p>{roll.value}</p>
