@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   export let onClickHandler;
   export let diceType;
 </script>
