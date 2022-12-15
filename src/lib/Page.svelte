@@ -1,3 +1,3 @@
-<main class="container mx-auto flex content-center flex-col">
+<main class="">
   <slot />
 </main>

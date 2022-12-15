@@ -3,6 +3,4 @@
   export let cssClass = '';
 </script>
 
-<button class={`p-2 m-2 border-2 rounded w-80 ${cssClass}`} on:click={onClickHandler}
-  ><slot /></button
->
+<button class={`p-2 border-2 border-black ${cssClass}`} on:click={onClickHandler}><slot /></button>
