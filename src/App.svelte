@@ -1,8 +1,10 @@
 <script lang="ts">
   import './app.css';
-  import DiceForm from './lib/DiceForm.svelte';
+
+  import DiceButtons from './lib/DiceButtons.svelte';
+  import Page from './lib/Page.svelte';
 </script>
 
-<main class="container mx-auto flex content-center flex-col">
-  <DiceForm />
-</main>
+<Page>
+  <DiceButtons />
+</Page>
