@@ -5,7 +5,7 @@ const getRandomByMinMax = (min: number, max: DiceType): number => {
 
   window.crypto.getRandomValues(randomBuffer);
 
-  let randomNumber = randomBuffer[0] / (0xffffffff + 1);
+  const randomNumber = randomBuffer[0] / (0xffffffff + 1);
 
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -23,14 +23,17 @@ const modifyRoll = (
   modifier: number
 ): number => {
   switch (modifierOperation) {
-    case ModifierOperation.NONE:
+    case ModifierOperation.NONE: {
       return roll;
-    case ModifierOperation.SUBTRACT:
+    }
+    case ModifierOperation.SUBTRACT: {
       const moddedValue = roll - modifier;
 
       return moddedValue < 1 ? 1 : moddedValue;
-    case ModifierOperation.ADD:
+    }
+    case ModifierOperation.ADD: {
       return roll + modifier;
+    }
   }
 };
 
