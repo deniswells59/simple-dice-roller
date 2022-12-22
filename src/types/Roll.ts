@@ -47,7 +47,7 @@ export interface CustomRoll {
 export const MAX_CUSTOM_ROLL_LENGTH = 4;
 export type CustomRollList = CustomRoll[]
 
-export interface Roll {
+export interface RollResult {
   value: number;
   list: number[];
   modifierOperation: ModifierOperation;
