@@ -6,25 +6,44 @@
   import Dropdown from './Dropdown.svelte';
   import Input from './Input.svelte';
 
-  let customRollInputOpen = true;
-
-  const buttonCss = 'sm:w-64 sm:-m-[1px] h-20 w-full bg-white m-12';
+  let customRollFormOpen = true;
 
   const customButtonClickHandler = () => {
-    customRollInputOpen = true;
+    customRollFormOpen = true;
   };
 </script>
 
-<Container cssClass="m-10">
-  <Button cssClass={buttonCss} onClickHandler={() => customButtonClickHandler()}>Custom</Button>
+<Container>
+  <Button
+    class="min-h-[10%] w-full my-8 bg-white"
+    onClickHandler={() => customButtonClickHandler()}
+  >
+    {#if !customRollFormOpen}
+      + Custom
+    {:else}
+      <Input class="w-full my-4" placeholder="Name" type="text" />
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Dice</th>
+          <th>Mod</th>
+          <th>Mod Num</th>
+        </tr>
+        <tr class="w-full">
+          <td class="w-[20%]">
+            <Input class="w-full text-center" placeholder="Number of Dice" type="number" />
+          </td>
+          <td class="w-[20%]">
+            <Dropdown class="w-full text-center" options={Object.keys(DICE_LIST)} />
+          </td>
+          <td class="w-[20%]">
+            <Dropdown class="w-ful text-center" options={['+', '-', 'None']} />
+          </td>
+          <td class="w-[20%]">
+            <Input class="w-full text-center" placeholder="Modifier" type="number" />
+          </td>
+        </tr>
+      </table>
+    {/if}
+  </Button>
 </Container>
-
-{#if customRollInputOpen}
-  <Container>
-    <Input placeholder="Name" type="text" />
-    <Input placeholder="Number of Dice" type="number" />
-    <Dropdown options={Object.keys(DICE_LIST)} />
-    <Dropdown options={['+', '-', 'None']} />
-    <Input placeholder="Modifier" type="number" />
-  </Container>
-{/if}

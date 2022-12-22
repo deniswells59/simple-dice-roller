@@ -16,7 +16,7 @@
 <Container>
   {#each Object.keys(DICE_LIST) as diceType}
     <Button
-      cssClass="sm:w-64 sm:-m-[1px] h-20 mx-[10px] -my-[1px] w-full bg-white"
+      class="sm:-m-[1px] h-20 -my-[1px] w-full bg-white"
       onClickHandler={() => onClickHandler(DICE_LIST[diceType])}>{diceType}</Button
     >
   {/each}

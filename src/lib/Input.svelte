@@ -5,5 +5,5 @@
 </script>
 
 <div>
-  <input class="w-auto border-2 p-3 rounded" {id} {type} {placeholder} />
+  <input class="border-2 p-3 rounded {$$props.class}" {id} {type} {placeholder} />
 </div>
