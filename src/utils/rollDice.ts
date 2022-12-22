@@ -1,6 +1,6 @@
-import { DiceType, ModifierOperation, Roll } from '../types/Roll';
+import { DiceList, MODIFIER_OPERATION, ModifierOperation, Roll } from '../types/Roll';
 
-const getRandomByMinMax = (min: number, max: DiceType): number => {
+const getRandomByMinMax = (min: number, max: number) => {
   const randomBuffer = new Uint32Array(1);
 
   window.crypto.getRandomValues(randomBuffer);
@@ -12,8 +12,8 @@ const getRandomByMinMax = (min: number, max: DiceType): number => {
   return Math.floor(randomNumber * (max - min + 1)) + min;
 };
 
-const rollSingleDice = (diceMax: DiceType): number => {
-  const value = getRandomByMinMax(1, diceMax);
+const rollSingleDice = (diceMax: DiceList): number => {
+  const value = getRandomByMinMax(1, diceMax as number);
   return value;
 };
 
@@ -23,15 +23,15 @@ const modifyRoll = (
   modifier: number
 ): number => {
   switch (modifierOperation) {
-    case ModifierOperation.NONE: {
+    case MODIFIER_OPERATION.NONE: {
       return roll;
     }
-    case ModifierOperation.SUBTRACT: {
+    case MODIFIER_OPERATION.SUBTRACT: {
       const moddedValue = roll - modifier;
 
       return moddedValue < 1 ? 1 : moddedValue;
     }
-    case ModifierOperation.ADD: {
+    case MODIFIER_OPERATION.ADD: {
       return roll + modifier;
     }
   }
@@ -40,11 +40,11 @@ const modifyRoll = (
 export const rollDice = ({
   numberOfDice = 1,
   diceType,
-  modifierOperation = ModifierOperation.NONE,
+  modifierOperation = MODIFIER_OPERATION.NONE,
   modifier = 0,
 }: {
   numberOfDice?: number;
-  diceType: DiceType;
+  diceType: DiceList;
   modifierOperation?: ModifierOperation;
   modifier?: number;
 }): Roll => {

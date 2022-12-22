@@ -1,14 +1,12 @@
 <script lang="ts">
   import { rollDice } from '../utils/rollDice';
-  import { DiceType } from '../types/Roll';
+  import { DICE_LIST, DiceList } from '../types/Roll';
   import { rolls } from '../store';
 
   import Button from './Button.svelte';
   import Container from './Container.svelte';
 
-  const buttonCss = 'sm:w-64 sm:-m-[1px] h-20 mx-[10px] -my-[1px] w-full bg-white';
-
-  const onClickHandler = (diceType: DiceType) => {
+  const onClickHandler = (diceType: DiceList) => {
     const roll = rollDice({ diceType });
 
     rolls.update((currentRolls) => [...currentRolls, roll]);
@@ -16,12 +14,10 @@
 </script>
 
 <Container>
-  <Button cssClass={buttonCss} onClickHandler={() => onClickHandler(DiceType.D2)}>D2</Button>
-  <Button cssClass={buttonCss} onClickHandler={() => onClickHandler(DiceType.D20)}>D20</Button>
-  <Button cssClass={buttonCss} onClickHandler={() => onClickHandler(DiceType.D4)}>D4</Button>
-  <Button cssClass={buttonCss} onClickHandler={() => onClickHandler(DiceType.D6)}>D6</Button>
-  <Button cssClass={buttonCss} onClickHandler={() => onClickHandler(DiceType.D8)}>D8</Button>
-  <Button cssClass={buttonCss} onClickHandler={() => onClickHandler(DiceType.D10)}>D10</Button>
-  <Button cssClass={buttonCss} onClickHandler={() => onClickHandler(DiceType.D12)}>D12</Button>
-  <Button cssClass={buttonCss} onClickHandler={() => onClickHandler(DiceType.D100)}>D100</Button>
+  {#each Object.keys(DICE_LIST) as diceType}
+    <Button
+      cssClass="sm:w-64 sm:-m-[1px] h-20 mx-[10px] -my-[1px] w-full bg-white"
+      onClickHandler={() => onClickHandler(DICE_LIST[diceType])}>{diceType}</Button
+    >
+  {/each}
 </Container>

@@ -1,7 +1,5 @@
 <script>
-  import { enumToObject } from '../utils/enumToObject';
-
-  import { DiceType } from '../types/Roll';
+  import { DICE_LIST } from '../types/Roll';
 
   import Button from './Button.svelte';
   import Container from './Container.svelte';
@@ -15,8 +13,6 @@
   const customButtonClickHandler = () => {
     customRollInputOpen = true;
   };
-
-  const diceTypeObject = enumToObject(DiceType);
 </script>
 
 <Container cssClass="m-10">
@@ -27,7 +23,7 @@
   <Container>
     <Input placeholder="Name" type="text" />
     <Input placeholder="Number of Dice" type="number" />
-    <Dropdown options={Object.keys(diceTypeObject)} />
+    <Dropdown options={Object.keys(DICE_LIST)} />
     <Dropdown options={['+', '-', 'None']} />
     <Input placeholder="Modifier" type="number" />
   </Container>
