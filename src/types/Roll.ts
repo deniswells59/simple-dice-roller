@@ -31,8 +31,7 @@ export const MODIFIER_OPERATION = {
 
 export type ModifierOperation = ObjectValues<typeof MODIFIER_OPERATION>;
 
-export interface CustomRoll {
-  name: string;
+export interface Roll {
   numOfDice: number;
   diceType: DiceList;
   modifierOperation: ModifierOperation;
@@ -45,7 +44,12 @@ export interface CustomRoll {
  * MAX_CUSTOM_ROLL_LENGTH
  */
 export const MAX_CUSTOM_ROLL_LENGTH = 4;
-export type CustomRollList = CustomRoll[]
+export type RollList = Roll[];
+
+export interface CustomRoll {
+  name: string;
+  rollList: RollList;
+}
 
 export interface RollResult {
   value: number;
