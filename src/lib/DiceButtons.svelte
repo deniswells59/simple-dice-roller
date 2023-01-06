@@ -1,7 +1,7 @@
 <script lang="ts">
   import { rollDice } from '../utils/rollDice';
   import { DICE_LIST, DiceList } from '../types/Roll';
-  import { rolls } from '../store';
+  import { rollResults } from '../store';
 
   import Button from './Button.svelte';
   import Container from './Container.svelte';
@@ -9,7 +9,7 @@
   const onClickHandler = (diceType: DiceList) => {
     const roll = rollDice({ diceType });
 
-    rolls.update((currentRolls) => [...currentRolls, roll]);
+    rollResults.update((currentRolls) => [...currentRolls, roll]);
   };
 </script>
 

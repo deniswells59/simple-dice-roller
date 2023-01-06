@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { rolls } from '../store';
+  import { rollResults } from '../store';
   import type { Roll } from '../types/Roll';
   import Button from './Button.svelte';
 
@@ -21,16 +21,16 @@
 
   const closeRollList = () => {
     showRollList = false;
-    rolls.set([]);
+    rollResults.set([]);
   };
 
-  rolls.subscribe(handleRollListUpdate);
+  rollResults.subscribe(handleRollListUpdate);
 </script>
 
 {#if showRollList}
   <div class="absolute bottom-10 right-10 flex flex-col items-end">
     <ul class="flex flex-col items-end">
-      {#each $rolls.slice(-3) as roll}
+      {#each $rollResults.slice(-3) as roll}
         <li
           class="flex justify-center items-center shadow-lg my-4 border bg-black text-white last:w-80 last:h-16 w-40 h-8"
         >
