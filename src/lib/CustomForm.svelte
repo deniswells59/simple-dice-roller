@@ -1,10 +1,13 @@
 <script lang="ts">
+  import { customRolls } from '../store';
+
   import {
     DICE_LIST,
     RollList,
     Roll,
     MAX_CUSTOM_ROLL_LENGTH,
     MODIFIER_OPERATION,
+    MODIFIER_SYMBOLS,
   } from '../types/Roll';
 
   import Button from './Button.svelte';
@@ -59,10 +62,12 @@
   };
 
   const createCustomRoll = () => {
-    console.log({
+    const newCustomRoll = {
       name: customRollName,
       rollList: customRollList,
-    });
+    };
+
+    customRolls.update((currentCustomRolls) => [...currentCustomRolls, newCustomRoll]);
   };
 </script>
 
@@ -111,7 +116,7 @@
             <td class="w-[20%]">
               <Dropdown
                 class="w-ful text-center"
-                options={Object.keys(MODIFIER_OPERATION).map((k) => MODIFIER_OPERATION[k])}
+                options={Object.keys(MODIFIER_OPERATION).map((k) => MODIFIER_SYMBOLS[k])}
                 values={Object.keys(MODIFIER_OPERATION)}
                 selectedValue={customRoll.modifierOperation}
                 onChange={(e) => onInputChange({ event: e, key: 'modifierOperation', index: i })}

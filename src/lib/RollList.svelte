@@ -1,13 +1,13 @@
 <script lang="ts">
   import { rollResults } from '../store';
-  import type { Roll } from '../types/Roll';
+  import type { RollResult } from '../types/Roll';
   import Button from './Button.svelte';
 
   const ROLL_LIST_TIMEOUT = 60000;
   let showRollList = false;
   let rollListTimeoutID;
 
-  const handleRollListUpdate = (newRolls: Roll[]) => {
+  const handleRollListUpdate = (newRolls: RollResult[]) => {
     if (newRolls.length) {
       showRollList = true;
 
