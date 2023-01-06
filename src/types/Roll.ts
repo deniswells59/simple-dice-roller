@@ -24,8 +24,8 @@ export const DICE_LIST = {
 export type DiceList = ObjectValues<typeof DICE_LIST>;
 
 export const MODIFIER_OPERATION = {
-  ADD: 'ADD',
-  SUBTRACT: 'SUBTRACT',
+  ADD: '+',
+  SUBTRACT: '-',
   NONE: 'NONE',
 } as const;
 

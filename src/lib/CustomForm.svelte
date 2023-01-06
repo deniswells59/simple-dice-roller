@@ -16,7 +16,7 @@
     numOfDice: 1,
     diceType: DICE_LIST.D20,
     modifierOperation: MODIFIER_OPERATION.NONE,
-    modifier: 1,
+    modifier: 0,
   };
 
   let customRollFormOpen = false;
@@ -82,10 +82,10 @@
       />
       <table>
         <tr>
-          <th>#</th>
+          <th>Dice #</th>
           <th>Dice</th>
           <th>Mod</th>
-          <th>Mod Num</th>
+          <th>Mod #</th>
         </tr>
         {#each customRollList as customRoll, i}
           <tr class="w-full">
@@ -93,7 +93,7 @@
               <Input
                 min="1"
                 class="w-full text-center"
-                placeholder="Number of Dice"
+                placeholder="1"
                 type="number"
                 value={customRoll.numOfDice}
                 onChange={(e) => onInputChange({ event: e, key: 'numOfDice', index: i })}
@@ -111,7 +111,7 @@
             <td class="w-[20%]">
               <Dropdown
                 class="w-ful text-center"
-                options={Object.keys(MODIFIER_OPERATION)}
+                options={Object.keys(MODIFIER_OPERATION).map((k) => MODIFIER_OPERATION[k])}
                 values={Object.keys(MODIFIER_OPERATION)}
                 selectedValue={customRoll.modifierOperation}
                 onChange={(e) => onInputChange({ event: e, key: 'modifierOperation', index: i })}
@@ -120,15 +120,18 @@
             <td class="w-[20%]">
               <Input
                 class="w-full text-center"
-                placeholder="Modifier"
+                placeholder="0"
                 type="number"
                 value={customRoll.modifier}
                 onChange={(e) => onInputChange({ event: e, key: 'modifier', index: i })}
+                disabled={customRoll.modifierOperation === MODIFIER_OPERATION.NONE}
               />
             </td>
           </tr>
         {/each}
       </table>
+
+      <Button class="w-full my-2" primaryAction onClickHandler={createCustomRoll}>Save</Button>
 
       {#if customRollList.length < MAX_CUSTOM_ROLL_LENGTH}
         <Button class="w-full my-2" onClickHandler={addDice}>+ Add Dice</Button>
@@ -137,8 +140,6 @@
       {#if customRollList.length > 1}
         <Button class="w-full my-2" onClickHandler={removeDice}>- Remove Dice</Button>
       {/if}
-
-      <Button class="w-full my-2" primaryAction onClickHandler={createCustomRoll}>Save</Button>
     {/if}
   </Button>
 </Container>

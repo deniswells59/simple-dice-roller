@@ -8,7 +8,7 @@
 <div>
   <input
     {...$$restProps}
-    class="border-2 p-3 rounded {$$props.class}"
+    class="border-2 p-3 rounded disabled:opacity-25 {$$props.class}"
     {id}
     {type}
     {placeholder}
