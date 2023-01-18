@@ -6,22 +6,22 @@
   import Button from './Button.svelte';
   import Container from './Container.svelte';
 
-  const onBasicClickHandler = (diceType: DiceList) => {
-    const rollResult = rollDice({ diceType });
+  const onBasicClickHandler = ({ diceType, name }: { diceType: DiceList; name: string }) => {
+    const rollResult = rollDice({ diceType, name });
 
     rollResults.update((currentRolls) => [...currentRolls, rollResult]);
   };
 
   const onCustomClickHandler = (customRoll: Roll) => {
-    const rollResult =  rollDice({
-        numberOfDice: customRoll.numOfDice,
-        diceType: customRoll.diceType,
-        modifierOperation: customRoll.modifierOperation,
-        modifier: customRoll.modifier,
-      });
+    const rollResult = rollDice({
+      name: customRoll.name,
+      numberOfDice: customRoll.numOfDice,
+      diceType: customRoll.diceType,
+      modifierOperation: customRoll.modifierOperation,
+      modifier: customRoll.modifier,
+    });
 
-
-      rollResults.update((currentRolls) => [...currentRolls, rollResult]);
+    rollResults.update((currentRolls) => [...currentRolls, rollResult]);
   };
 </script>
 
@@ -29,7 +29,8 @@
   {#each Object.keys(DICE_LIST) as diceType}
     <Button
       class="sm:-m-[1px] h-20 -my-[1px] w-full bg-white"
-      onClickHandler={() => onBasicClickHandler(DICE_LIST[diceType])}>{diceType}</Button
+      onClickHandler={() => onBasicClickHandler({ diceType: DICE_LIST[diceType], name: diceType })}
+      >{diceType}</Button
     >
   {/each}
 </Container>

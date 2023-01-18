@@ -38,11 +38,13 @@ const modifyRoll = (
 };
 
 export const rollDice = ({
+  name,
   numberOfDice = 1,
   diceType,
   modifierOperation = MODIFIER_OPERATION.NONE,
   modifier = 0,
 }: {
+  name: string;
   numberOfDice?: number;
   diceType: DiceList;
   modifierOperation?: ModifierOperation;
@@ -59,6 +61,7 @@ export const rollDice = ({
   const modifiedRollValue = modifyRoll(rollValue, modifierOperation, modifier);
 
   return {
+    name,
     value: modifiedRollValue,
     list: rollList,
     modifierOperation,

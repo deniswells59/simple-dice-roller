@@ -46,6 +46,7 @@ export interface Roll {
 }
 
 export interface RollResult {
+  name: string;
   value: number;
   list: number[];
   modifierOperation: ModifierOperation;

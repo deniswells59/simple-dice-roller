@@ -4,12 +4,12 @@
   import Button from './Button.svelte';
 
   const ROLL_LIST_TIMEOUT = 60000;
-  let showRollList = false;
+  let showRollResultList = false;
   let rollListTimeoutID;
 
   const handleRollListUpdate = (newRolls: RollResult[]) => {
     if (newRolls.length) {
-      showRollList = true;
+      showRollResultList = true;
 
       if (rollListTimeoutID) {
         clearTimeout(rollListTimeoutID);
@@ -20,15 +20,15 @@
   };
 
   const closeRollList = () => {
-    showRollList = false;
+    showRollResultList = false;
     rollResults.set([]);
   };
 
   rollResults.subscribe(handleRollListUpdate);
 </script>
 
-{#if showRollList}
-  <div class="absolute bottom-10 right-10 flex flex-col items-end">
+{#if showRollResultList}
+  <div class="fixed bottom-10 right-10 flex flex-col items-end">
     <ul class="flex flex-col items-end">
       {#each $rollResults.slice(-3) as roll}
         <li
@@ -40,6 +40,6 @@
         </li>
       {/each}
     </ul>
-    <Button onClickHandler={() => closeRollList()} cssClass="border-0 w-auto">Clear X</Button>
+    <Button onClickHandler={() => closeRollList()} cssClass="border-0 w-auto bg-white">Clear X</Button>
   </div>
 {/if}

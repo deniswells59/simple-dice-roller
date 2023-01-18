@@ -3,12 +3,12 @@
 
   import DiceButtons from './lib/DiceButtons.svelte';
   import Page from './lib/Page.svelte';
-  import RollList from './lib/RollList.svelte';
+  import RollResultList from './lib/RollResultList.svelte';
   import CustomForm from './lib/CustomForm.svelte';
 </script>
 
 <Page>
   <DiceButtons />
-  <RollList />
+  <RollResultList />
   <CustomForm />
 </Page>
