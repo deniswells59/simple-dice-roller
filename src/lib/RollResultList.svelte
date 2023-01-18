@@ -35,11 +35,14 @@
           class="flex justify-center items-center shadow-lg my-4 border bg-black text-white last:w-80 last:h-16 w-40 h-8"
         >
           <div>
+            <p>{roll.name}</p>
             <p>{roll.value}</p>
           </div>
         </li>
       {/each}
     </ul>
-    <Button onClickHandler={() => closeRollList()} cssClass="border-0 w-auto bg-white">Clear X</Button>
+    <Button onClickHandler={() => closeRollList()} cssClass="border-0 w-auto bg-white"
+      >Clear X</Button
+    >
   </div>
 {/if}

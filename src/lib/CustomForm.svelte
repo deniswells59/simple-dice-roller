@@ -30,7 +30,7 @@
     customRoll[key] = newValue;
   };
 
-  const createCustomRoll = (e) => {
+  const createCustomRoll = (e: Event) => {
     e.preventDefault();
 
     const newCustomRoll = { ...customRoll };
