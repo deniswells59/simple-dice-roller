@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let onClickHandler;
+  export let onClickHandler = () => {};
   export let primaryAction = false;
 </script>
 
