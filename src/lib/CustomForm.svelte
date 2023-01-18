@@ -1,12 +1,7 @@
 <script lang="ts">
   import { customRolls } from '../store';
 
-  import {
-    DICE_LIST,
-    Roll,
-    MODIFIER_OPERATION,
-    MODIFIER_SYMBOLS,
-  } from '../types/Roll';
+  import { DICE_LIST, Roll, MODIFIER_OPERATION, MODIFIER_SYMBOLS } from '../types/Roll';
 
   import Button from './Button.svelte';
   import Container from './Container.svelte';
@@ -28,21 +23,21 @@
     customRollFormOpen = true;
   };
 
-  const onInputChange = ({
-    event,
-    key,
-  }: {
-    event: Event;
-    key: string;
-  }): void => {
+  const onInputChange = ({ event, key }: { event: Event; key: string }): void => {
     const target = event.target as HTMLInputElement;
     const newValue = isNaN(parseInt(target.value)) ? target.value : parseInt(target.value);
 
-    customRoll[key] = newValue
+    customRoll[key] = newValue;
   };
 
-  const createCustomRoll = () => {
-    customRolls.update((currentCustomRolls) => [...currentCustomRolls, customRoll]);
+  const createCustomRoll = (e) => {
+    e.preventDefault();
+
+    const newCustomRoll = { ...customRoll };
+    customRollFormOpen = false;
+    customRoll = { ...unpoplulatedRoll };
+
+    customRolls.update((currentCustomRolls) => [...currentCustomRolls, newCustomRoll]);
   };
 </script>
 
@@ -54,19 +49,21 @@
     {#if !customRollFormOpen}
       + Custom
     {:else}
-      <Input
-        class="w-full my-4"
-        placeholder="Name"
-        type="text"
-        onChange={(e) => onInputChange({ event: e, key: 'name' })}
-      />
-      <table>
-        <tr>
-          <th>Dice #</th>
-          <th>Dice</th>
-          <th>Mod</th>
-          <th>Mod #</th>
-        </tr>
+      <form on:submit={createCustomRoll}>
+        <Input
+          class="w-full my-4"
+          placeholder="Name"
+          type="text"
+          onChange={(e) => onInputChange({ event: e, key: 'name' })}
+        />
+
+        <table>
+          <tr>
+            <th>Dice #</th>
+            <th>Dice</th>
+            <th>Mod</th>
+            <th>Mod #</th>
+          </tr>
 
           <tr class="w-full">
             <td class="w-[20%]">
@@ -108,10 +105,10 @@
               />
             </td>
           </tr>
+        </table>
 
-      </table>
-
-      <Button class="w-full my-2" primaryAction onClickHandler={createCustomRoll}>Save</Button>
+        <Button type="submit" class="w-full my-2" primaryAction>Save</Button>
+      </form>
     {/if}
   </Button>
 </Container>
