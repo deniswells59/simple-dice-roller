@@ -32,29 +32,17 @@ export const MODIFIER_OPERATION = {
 export const MODIFIER_SYMBOLS = {
   ADD: '+',
   SUBTRACT: '-',
-  NONE: 'NONE',
+  NONE: 'N/A',
 } as const;
 
 export type ModifierOperation = ObjectValues<typeof MODIFIER_OPERATION>;
 
 export interface Roll {
+  name: string;
   numOfDice: number;
   diceType: DiceList;
   modifierOperation: ModifierOperation;
   modifier: number;
-}
-
-/**
- * TODO
- * Implement some way to limit CustomRollList based on fixed
- * MAX_CUSTOM_ROLL_LENGTH
- */
-export const MAX_CUSTOM_ROLL_LENGTH = 4;
-export type RollList = Roll[];
-
-export interface CustomRoll {
-  name: string;
-  rollList: RollList;
 }
 
 export interface RollResult {

@@ -1,28 +1,27 @@
 <script lang="ts">
   import { rollDice } from '../utils/rollDice';
-  import { DICE_LIST, DiceList, CustomRoll, MODIFIER_OPERATION } from '../types/Roll';
+  import { DICE_LIST, DiceList, Roll } from '../types/Roll';
   import { rollResults, customRolls } from '../store';
 
   import Button from './Button.svelte';
   import Container from './Container.svelte';
 
   const onBasicClickHandler = (diceType: DiceList) => {
-    const roll = rollDice({ diceType });
+    const rollResult = rollDice({ diceType });
 
-    rollResults.update((currentRolls) => [...currentRolls, roll]);
+    rollResults.update((currentRolls) => [...currentRolls, rollResult]);
   };
 
-  const onCustomClickHandler = (customRoll: CustomRoll) => {
-    const rollResult = customRoll.rollList.map((roll) => {
-      return rollDice({
-        numberOfDice: roll.numOfDice,
-        diceType: roll.diceType,
-        modifierOperation: roll.modifierOperation,
-        modifier: roll.modifier,
+  const onCustomClickHandler = (customRoll: Roll) => {
+    const rollResult =  rollDice({
+        numberOfDice: customRoll.numOfDice,
+        diceType: customRoll.diceType,
+        modifierOperation: customRoll.modifierOperation,
+        modifier: customRoll.modifier,
       });
-    });
 
-    console.log('rollResult:', rollResult);
+
+      rollResults.update((currentRolls) => [...currentRolls, rollResult]);
   };
 </script>
 
