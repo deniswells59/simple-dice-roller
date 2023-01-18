@@ -39,19 +39,19 @@ const modifyRoll = (
 
 export const rollDice = ({
   name,
-  numberOfDice = 1,
+  numOfDice = 1,
   diceType,
   modifierOperation = MODIFIER_OPERATION.NONE,
   modifier = 0,
 }: {
   name: string;
-  numberOfDice?: number;
+  numOfDice?: number;
   diceType: DiceList;
   modifierOperation?: ModifierOperation;
   modifier?: number;
 }): RollResult => {
   // Creates Array of roll values based on number of dice needed to be rolled
-  const emptyArray = Array.from({ length: numberOfDice });
+  const emptyArray = Array.from({ length: numOfDice });
   const rollList = emptyArray.map(() => rollSingleDice(diceType));
 
   // Adds them all up
