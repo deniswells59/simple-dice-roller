@@ -16,7 +16,7 @@ vi.mock('../../utils/rollDice', () => {
   };
 });
 
-describe('DiceButtons', async () => {
+describe('DiceButtons Component', async () => {
   test('it renders', () => {
     const { getByText } = render(DiceButtons);
 
