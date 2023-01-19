@@ -59,18 +59,19 @@
 
         <table>
           <tr>
-            <th>Dice #</th>
-            <th>Dice</th>
-            <th>Mod</th>
-            <th>Mod #</th>
-          </tr>
+            <th><label for="numberOfDice">Dice #</label></th>
+            <th><label for="diceType">Dice</label></th>
+            <th><label for="modifierOperation">Mod</label></th>
+            <th><label for="modifier">Mod #</label>/th> </th></tr
+          >
 
           <tr class="w-full">
             <td class="w-[20%]">
               <Input
-                min="1"
                 class="w-full text-center"
                 placeholder="1"
+                id="numOfDice"
+                min="1"
                 type="number"
                 value={customRoll.numOfDice}
                 onChange={(e) => onInputChange({ event: e, key: 'numOfDice' })}
@@ -79,6 +80,7 @@
             <td class="w-[20%]">
               <Dropdown
                 class="w-full text-center"
+                id="diceType"
                 options={Object.keys(DICE_LIST)}
                 values={Object.keys(DICE_LIST).map((k) => DICE_LIST[k])}
                 selectedValue={customRoll.diceType}
@@ -88,6 +90,7 @@
             <td class="w-[20%]">
               <Dropdown
                 class="w-ful text-center"
+                id="modifierOperation"
                 options={Object.keys(MODIFIER_OPERATION).map((k) => MODIFIER_SYMBOLS[k])}
                 values={Object.keys(MODIFIER_OPERATION)}
                 selectedValue={customRoll.modifierOperation}
@@ -98,6 +101,8 @@
               <Input
                 class="w-full text-center"
                 placeholder="0"
+                id="modifier"
+                min="0"
                 type="number"
                 value={customRoll.modifier}
                 onChange={(e) => onInputChange({ event: e, key: 'modifier' })}
