@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/svelte';
 import { tick } from 'svelte';
 import { vi } from 'vitest';
 
-import DiceButtons from './DiceButtons.svelte';
+import DiceButtons from '../DiceButtons.svelte';
 
 import { customRolls } from '../../store';
 import { DICE_LIST, MODIFIER_OPERATION } from '../../types/Roll';

@@ -15,7 +15,7 @@
   const onCustomClickHandler = (customRoll: Roll) => {
     const rollResult = rollDice({
       name: customRoll.name,
-      numberOfDice: customRoll.numOfDice,
+      numOfDice: customRoll.numOfDice,
       diceType: customRoll.diceType,
       modifierOperation: customRoll.modifierOperation,
       modifier: customRoll.modifier,
