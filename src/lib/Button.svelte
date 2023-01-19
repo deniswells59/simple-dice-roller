@@ -5,9 +5,7 @@
 </script>
 
 <button
-  class={`p-2 border-2 border-black ${primaryAction ? 'bg-black text-white' : ''} ${
-    $$props.class ? $$props.class : ''
-  }`}
+  class={`p-2 border-2 border-black ${primaryAction && 'bg-black text-white'} ${$$props?.class}`}
   data-testid={testId}
   on:click={onClickHandler}><slot /></button
 >
