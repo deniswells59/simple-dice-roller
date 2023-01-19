@@ -1,5 +1,4 @@
-import { fireEvent, getByTestId, render } from '@testing-library/svelte';
-import svelte from 'svelte';
+import { fireEvent, render } from '@testing-library/svelte';
 import { vi } from 'vitest';
 
 import Button from '../Button.svelte';
