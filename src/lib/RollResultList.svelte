@@ -3,7 +3,8 @@
   import type { RollResult } from '../types/Roll';
   import Button from './Button.svelte';
 
-  const ROLL_LIST_TIMEOUT = 60000;
+  import { ROLL_LIST_TIMEOUT } from '../constants/config';
+
   let showRollResultList = false;
   let rollListTimeoutID;
 

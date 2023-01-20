@@ -20,6 +20,7 @@
   "plugins": ["@typescript-eslint", "svelte3"],
   "rules": {
     "quotes": ["error", "single"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "ban-ts-comment": ["allow", "always"]
   }
 }

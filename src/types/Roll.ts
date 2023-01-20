@@ -48,6 +48,7 @@ export interface Roll {
 export interface RollResult {
   name: string;
   value: number;
+  diceType: DiceList;
   list: number[];
   modifierOperation: ModifierOperation;
   modifier: number;
