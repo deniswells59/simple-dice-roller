@@ -1,6 +1,5 @@
 import { fireEvent, render, waitFor } from '@testing-library/svelte';
 import { tick } from 'svelte';
-import { get } from 'svelte/store';
 import { vi } from 'vitest';
 
 import RollResultList from '../RollResultList.svelte';
@@ -14,7 +13,7 @@ vi.mock('../../constants/config', () => ({
   ROLL_LIST_TIMEOUT: 1000,
 }));
 
-describe('RollResultList Component - TEST', async () => {
+describe('RollResultList Component - TEST!', async () => {
   beforeEach(() => {
     rollResults.set([
       {
