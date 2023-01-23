@@ -14,7 +14,7 @@ vi.mock('../../constants/config', () => ({
   ROLL_LIST_TIMEOUT: 1000,
 }));
 
-describe('RollResultList Component', async () => {
+describe('RollResultList Component - TEST', async () => {
   beforeEach(() => {
     rollResults.set([
       {
