@@ -9,7 +9,8 @@
     "test": "npx vitest",
     "coverage": "npx vitest run --coverage",
     "preview": "vite preview",
-    "check": "svelte-check --tsconfig ./tsconfig.json"
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "preinstall": "git config core.hooksPath hooks"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",

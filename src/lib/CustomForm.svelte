@@ -19,8 +19,13 @@
   let customRollFormOpen = false;
   let customRoll: Roll = { ...unpoplulatedRoll };
 
-  const customButtonClickHandler = () => {
+  const openForm = () => {
     customRollFormOpen = true;
+  };
+
+  const closeForm = () => {
+    customRollFormOpen = false;
+    customRoll = { ...unpoplulatedRoll };
   };
 
   const onInputChange = ({ event, key }: { event: Event; key: string }): void => {
@@ -34,21 +39,17 @@
     e.preventDefault();
 
     const newCustomRoll = { ...customRoll };
-    customRollFormOpen = false;
-    customRoll = { ...unpoplulatedRoll };
+    closeForm();
 
     customRolls.update((currentCustomRolls) => [...currentCustomRolls, newCustomRoll]);
   };
 </script>
 
-<Container>
-  <Button
-    class="min-h-[10%] w-full my-8 bg-white"
-    onClickHandler={() => customButtonClickHandler()}
-  >
-    {#if !customRollFormOpen}
-      + Custom
-    {:else}
+<Container class="my-8 mx-2">
+  {#if !customRollFormOpen}
+    <Button class="min-h-[10%] w-full bg-white" onClickHandler={openForm}>+ Custom</Button>
+  {:else}
+    <Container class="p-2 my-8 border-2 border-black bg-white">
       <form on:submit={createCustomRoll}>
         <Input
           class="w-full my-4"
@@ -58,11 +59,11 @@
         />
 
         <table>
-          <tr>
-            <th><label for="numberOfDice">Dice #</label></th>
-            <th><label for="diceType">Dice</label></th>
-            <th><label for="modifierOperation">Mod</label></th>
-            <th><label for="modifier">Mod #</label>/th> </th></tr
+          <tr class="w-full">
+            <th class="w-[20%]"><label for="numberOfDice">Dice #</label></th>
+            <th class="w-[20%]"><label for="diceType">Dice</label></th>
+            <th class="w-[20%]"><label for="modifierOperation">Mod</label></th>
+            <th class="w-[20%]"><label for="modifier">Mod #</label></th></tr
           >
 
           <tr class="w-full">
@@ -89,7 +90,7 @@
             </td>
             <td class="w-[20%]">
               <Dropdown
-                class="w-ful text-center"
+                class="w-full text-center"
                 id="modifierOperation"
                 options={Object.keys(MODIFIER_OPERATION).map((k) => MODIFIER_SYMBOLS[k])}
                 values={Object.keys(MODIFIER_OPERATION)}
@@ -112,8 +113,9 @@
           </tr>
         </table>
 
-        <Button type="submit" class="w-full my-2" primaryAction>Save</Button>
+        <Button type="submit" class="w-full mt-6 mb-2" primaryAction>Save</Button>
+        <Button class="w-full mb-2" onClickHandler={closeForm}>Cancel</Button>
       </form>
-    {/if}
-  </Button>
+    </Container>
+  {/if}
 </Container>
