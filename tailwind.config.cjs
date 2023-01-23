@@ -2,7 +2,21 @@
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        appear: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
+      },
+      animation: {
+        appear: 'appear .2s linear',
+      },
+    },
     fontFamily: {
       sans: ['Roboto Mono'],
     },

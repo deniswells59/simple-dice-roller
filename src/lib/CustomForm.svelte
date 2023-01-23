@@ -47,9 +47,11 @@
 
 <Container class="my-8 mx-2">
   {#if !customRollFormOpen}
-    <Button class="min-h-[10%] w-full bg-white" onClickHandler={openForm}>+ Custom</Button>
+    <Button class="min-h-[10%] w-full bg-white animate-appear" onClickHandler={openForm}
+      >+ Custom</Button
+    >
   {:else}
-    <Container class="p-2 my-8 border-2 border-black bg-white">
+    <Container class="p-2 my-8 border-2 border-black bg-white animate-appear">
       <form on:submit={createCustomRoll}>
         <Input
           class="w-full my-4"
