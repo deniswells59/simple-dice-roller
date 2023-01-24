@@ -16,9 +16,6 @@
       latestRollResult = { ...newRolls[newRolls.length - 1] };
       prevRolls = [...newRolls].slice(-3, -1);
 
-      console.log('@@latestRollResult:', latestRollResult);
-      console.log('@@prevRolls:', prevRolls);
-
       showRollResultList = true;
 
       if (rollListTimeoutID) {

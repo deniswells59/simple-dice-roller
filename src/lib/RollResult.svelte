@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { MODIFIER_SYMBOLS } from '../types/Roll';
+  import { MODIFIER_OPERATION, MODIFIER_SYMBOLS } from '../types/Roll';
 
   export let rollResult;
   export let animate = true;
@@ -11,8 +11,6 @@
 
   let animationState = STYLE_NONE;
   let opacityState = OPACITY_0;
-
-  let { name, diceType, list, modifierOperation, modifier, value } = rollResult;
 
   const animateElement = () => {
     // Remove Animation (Resets element)
@@ -26,11 +24,48 @@
     }, 50);
   };
 
+  const addModifierToString = ({ stringToConcat, modifierOperation, modifier }) => {
+    if (modifierOperation !== MODIFIER_OPERATION.NONE) {
+      return stringToConcat.concat(MODIFIER_SYMBOLS[modifierOperation], modifier.toString());
+    } else {
+      return stringToConcat;
+    }
+  };
+
+  const createEquation = ({ list, modifierOperation, modifier }): string => {
+    let rollsAdded = list.join(' + ');
+
+    const equation = addModifierToString({
+      stringToConcat: rollsAdded,
+      modifierOperation,
+      modifier,
+    });
+
+    return equation;
+  };
+
+  const createLegend = ({ list, diceType, modifierOperation, modifier }): string => {
+    const diceAmount = list.length;
+    const diceTypeText = `d${diceType}`;
+
+    let diceString = `${diceAmount}${diceTypeText}`;
+
+    const legend = addModifierToString({
+      stringToConcat: diceString,
+      modifierOperation,
+      modifier,
+    });
+
+    return legend;
+  };
+
+  // Reactive Statements
   $: {
     if (rollResult && animate) {
       animateElement();
     }
   }
+  $: ({ name, diceType, list, modifierOperation, modifier, value } = rollResult);
 </script>
 
 <li
@@ -42,10 +77,10 @@
       <div class="text-sm">{name}</div>
       <div class="text-lg overflow-hidden whitespace-nowrap text-ellipsis">
         <div class="inline">{`D${diceType}`}</div>
-        <div class="inline">{list.join(' + ')}</div>
+        <div class="inline">{createEquation({ list, modifierOperation, modifier })}</div>
       </div>
       <div class="text-stone-700">
-        {`${list.length}d${diceType}${MODIFIER_SYMBOLS[modifierOperation]}${modifier}`}
+        {createLegend({ list, diceType, modifierOperation, modifier })}
       </div>
     </div>
 
