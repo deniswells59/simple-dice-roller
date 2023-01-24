@@ -1,15 +1,19 @@
 <script lang="ts">
   import { rollResults } from '../store';
   import type { RollResult } from '../types/Roll';
-  import Button from './Button.svelte';
-
   import { ROLL_LIST_TIMEOUT } from '../constants/config';
+
+  import Button from './Button.svelte';
+  import { default as RollResultComponent } from './RollResult.svelte';
 
   let showRollResultList = false;
   let rollListTimeoutID;
+  let latestRollResult: RollResult;
 
   const handleRollListUpdate = (newRolls: RollResult[]) => {
     if (newRolls.length) {
+      latestRollResult = newRolls[newRolls.length - 1];
+
       showRollResultList = true;
 
       if (rollListTimeoutID) {
@@ -31,16 +35,11 @@
 {#if showRollResultList}
   <div class="fixed bottom-10 right-10 flex flex-col items-end">
     <ul class="flex flex-col items-end">
-      {#each $rollResults.slice(-3) as roll}
-        <li
-          class="flex justify-center items-center shadow-lg my-4 border bg-black text-white last:w-80 last:h-16 w-40 h-8"
-        >
-          <div>
-            <p>{roll.name}</p>
-            <p>{roll.value}</p>
-          </div>
-        </li>
+      {#each $rollResults.slice(-3, -1) as rollResult}
+        <RollResultComponent {rollResult} animate={false} />
       {/each}
+
+      <RollResultComponent rollResult={latestRollResult} />
     </ul>
     <Button onClickHandler={() => closeRollList()} cssClass="border-0 w-auto bg-white"
       >Clear X</Button

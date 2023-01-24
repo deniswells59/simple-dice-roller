@@ -12,9 +12,18 @@ module.exports = {
             opacity: '1',
           },
         },
+        moveInFromRight: {
+          '0%': {
+            transform: 'translateX(100%)',
+          },
+          '100%': {
+            transform: 'translateX(0%)',
+          },
+        },
       },
       animation: {
         appear: 'appear .2s linear',
+        moveInFromRight: 'moveInFromRight .1s linear',
       },
     },
     fontFamily: {
