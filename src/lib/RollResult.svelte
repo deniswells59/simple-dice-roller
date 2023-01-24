@@ -29,13 +29,10 @@
   $: {
     if (rollResult && animate) {
       animateElement();
-      console.log('@@rollResult', rollResult);
     }
   }
-  // $: rollResult && ({ name } = rollResult);
 </script>
 
-<!-- last:h-16 h-8" -->
 <li
   class="flex justify-center items-center shadow-lg my-4 border bg-[#172026] text-white last:w-80 w-40"
   style={animate ? `animation: ${animationState}; opacity: ${opacityState};` : ''}
