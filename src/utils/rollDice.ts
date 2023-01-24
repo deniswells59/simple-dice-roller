@@ -62,6 +62,7 @@ export const rollDice = ({
 
   return {
     name,
+    diceType,
     value: modifiedRollValue,
     list: rollList,
     modifierOperation,

@@ -1,1 +1,1 @@
-export const ROLL_LIST_TIMEOUT = 60000;
+export const ROLL_LIST_TIMEOUT = 120000;
