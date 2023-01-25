@@ -4,7 +4,8 @@
     MODIFIER_SYMBOLS,
     RollResult,
   } from '../types/Roll';
-  import { DICE_ASSETS_BY_TYPE } from '../constants/assets';
+
+  import DiceTypeIcon from './DiceTypeIcon.svelte';
 
   export let rollResult: RollResult;
   export let primary = false;
@@ -112,14 +113,9 @@
         <div
           class="text-lg my-2 overflow-hidden whitespace-nowrap text-ellipsis"
         >
-          <div class="inline">
-            <span
-              class={`inline-block h-[36px] w-[32px] relative mb-[-12px]`}
-              style="background: {DICE_ASSETS_BY_TYPE[diceType]
-                .asset} no-repeat; {DICE_ASSETS_BY_TYPE[diceType]
-                ?.styleOverride}"
-            />
-          </div>
+          {#key diceType}
+            <DiceTypeIcon typeOfDice={diceType} whiteFill={true} />
+          {/key}
           <div class="inline tracking-[.25em]">
             {createEquationString({ list, modifierOperation, modifier })}
           </div>

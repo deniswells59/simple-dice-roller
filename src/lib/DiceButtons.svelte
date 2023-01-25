@@ -5,6 +5,7 @@
 
   import Button from './Button.svelte';
   import Container from './Container.svelte';
+  import DiceTypeIcon from './DiceTypeIcon.svelte';
 
   const onBasicClickHandler = ({
     diceType,
@@ -37,7 +38,7 @@
       class="sm:-m-[1px] h-20 -my-[1px] w-full bg-white"
       onClickHandler={() =>
         onBasicClickHandler({ diceType: DICE_LIST[diceType], name: diceType })}
-      >{diceType}</Button
+      ><DiceTypeIcon typeOfDice={DICE_LIST[diceType]} /> {diceType}</Button
     >
   {/each}
 </Container>
