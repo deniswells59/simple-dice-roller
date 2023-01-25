@@ -1,8 +1,12 @@
 <script lang="ts">
-  import { MODIFIER_OPERATION, MODIFIER_SYMBOLS, RollResult } from '../types/Roll';
+  import {
+    MODIFIER_OPERATION,
+    MODIFIER_SYMBOLS,
+    RollResult,
+  } from '../types/Roll';
 
   export let rollResult: RollResult;
-  export let animate = true;
+  export let primary = false;
 
   const STYLE_NONE = 'none';
   const OPACITY_0 = '0';
@@ -15,7 +19,11 @@
   let animationState = STYLE_NONE;
   let opacityState = OPACITY_0;
 
-  const addModifierToString = ({ stringToConcat, modifierOperation, modifier }) => {
+  const addModifierToString = ({
+    stringToConcat,
+    modifierOperation,
+    modifier,
+  }) => {
     if (modifierOperation !== MODIFIER_OPERATION.NONE) {
       const modSymbol = MODIFIER_SYMBOLS[modifierOperation];
 
@@ -25,7 +33,11 @@
     }
   };
 
-  const createEquationString = ({ list, modifierOperation, modifier }): string => {
+  const createEquationString = ({
+    list,
+    modifierOperation,
+    modifier,
+  }): string => {
     let rollsAdded = list.join('+');
 
     const equation = addModifierToString({
@@ -37,7 +49,12 @@
     return equation;
   };
 
-  const createLegendString = ({ list, diceType, modifierOperation, modifier }): string => {
+  const createLegendString = ({
+    list,
+    diceType,
+    modifierOperation,
+    modifier,
+  }): string => {
     const diceAmount = list.length;
     const diceTypeText = `d${diceType}`;
 
@@ -66,36 +83,50 @@
 
   // Reactive Statements
   $: {
-    if (rollResult && animate) {
+    if (rollResult && primary) {
       animateElement();
     }
   }
-  $: ({ name, diceType, list, modifierOperation, modifier, value } = rollResult);
+  $: ({ name, diceType, list, modifierOperation, modifier, value } =
+    rollResult);
 </script>
 
 <li
-  class={`flex justify-center items-center shadow-lg my-4 border bg-black text-white last:w-80 w-40 ${
-    animate && 'animate-moveInFromRight'
+  class={`flex justify-center items-center shadow-lg my-1 border bg-black text-white last:w-80 max-w-80 ${
+    primary && 'animate-moveInFromRight'
   }`}
-  style={animate ? `animation: ${animationState}; opacity: ${opacityState};` : ''}
+  style={primary
+    ? `animation: ${animationState}; opacity: ${opacityState};`
+    : ''}
 >
-  <div class="flex flex-row justify-between m-4 w-full h-full overflow-hidden">
-    <div class="flex flex-col overflow-hidden">
-      <div class="text-sm">{name}</div>
-      <div class="text-lg overflow-hidden whitespace-nowrap text-ellipsis">
-        <div class="inline">{`D${diceType}`}</div>
-        <div class="inline tracking-[.25em]">
-          {createEquationString({ list, modifierOperation, modifier })}
+  <div
+    class={`flex flex-row justify-between w-full h-full overflow-hidden my-2 mx-3 ${
+      primary && 'm-4'
+    }`}
+  >
+    <div class="flex flex-col overflow-hidden justify-center">
+      <div class="text-sm ">{name}</div>
+
+      {#if primary}
+        <div class="text-lg overflow-hidden whitespace-nowrap text-ellipsis">
+          <div class="inline">{`D${diceType}`}</div>
+          <div class="inline tracking-[.25em]">
+            {createEquationString({ list, modifierOperation, modifier })}
+          </div>
         </div>
-      </div>
-      <div class="text-stone-700">
-        {createLegendString({ list, diceType, modifierOperation, modifier })}
-      </div>
+        <div class="text-stone-700">
+          {createLegendString({ list, diceType, modifierOperation, modifier })}
+        </div>
+      {/if}
     </div>
 
-    <div class="flex justify-center items-center text-2xl mx-4">
-      <div class="mx-1">=</div>
-      <div class="mx-1 ml-4">{value}</div>
+    <div
+      class={`flex justify-center items-center ml-4 text-lg ${
+        primary && 'ml-4 text-4xl'
+      }`}
+    >
+      <div class={`mx-1 bg-white w-px ${primary ? 'h-12' : 'h-6'}`} />
+      <div class={`ml-4 ${primary && 'mx-1'}`}>{value}</div>
     </div>
   </div>
 </li>
