@@ -23,14 +23,14 @@ module.exports = {
       },
       animation: {
         appear: 'appear .2s linear',
-        moveInFromRight: 'moveInFromRight .1s linear',
+        moveInFromRight: 'moveInFromRight 1s linear',
       },
     },
     fontFamily: {
       sans: ['Roboto Mono'],
     },
     colors: {
-      black: '#000',
+      black: '#172026',
       white: '#fff',
       page: '#f4f4f0',
     },

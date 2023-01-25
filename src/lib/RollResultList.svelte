@@ -8,11 +8,13 @@
 
   let showRollResultList = false;
   let rollListTimeoutID;
+  let prevRolls: RollResult[] = [];
   let latestRollResult: RollResult;
 
   const handleRollListUpdate = (newRolls: RollResult[]) => {
     if (newRolls.length) {
-      latestRollResult = newRolls[newRolls.length - 1];
+      latestRollResult = { ...newRolls[newRolls.length - 1] };
+      prevRolls = [...newRolls].slice(-3, -1);
 
       showRollResultList = true;
 
@@ -33,9 +35,9 @@
 </script>
 
 {#if showRollResultList}
-  <div class="fixed bottom-10 right-10 flex flex-col items-end">
+  <div class="fixed bottom-10 right-10 flex flex-col items-end z-10">
     <ul class="flex flex-col items-end">
-      {#each $rollResults.slice(-3, -1) as rollResult}
+      {#each prevRolls as rollResult}
         <RollResultComponent {rollResult} animate={false} />
       {/each}
 
