@@ -28,10 +28,6 @@
 
   let customRoll: Roll = { ...unpoplulatedRoll };
 
-  // const openForm = () => {
-  //   customRollFormOpen = true;
-  // };
-
   const closeAndCleanForm = () => {
     closeForm();
     customRoll = { ...unpoplulatedRoll };
