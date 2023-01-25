@@ -7,33 +7,23 @@
   const STYLE_NONE = 'none';
   const OPACITY_0 = '0';
   const OPACITY_1 = '1';
-  const MOVE_IN_ANIMATION = 'moveInFromRight .25s ease-out';
+  const MOVE_IN_ANIMATION = 'moveInFromRight .35s ease-out';
 
   let animationState = STYLE_NONE;
   let opacityState = OPACITY_0;
 
-  const animateElement = () => {
-    // Remove Animation (Resets element)
-    animationState = STYLE_NONE;
-    opacityState = OPACITY_0;
-
-    setTimeout(() => {
-      // Add Animation (Triggers animation)
-      animationState = MOVE_IN_ANIMATION;
-      opacityState = OPACITY_1;
-    }, 50);
-  };
-
   const addModifierToString = ({ stringToConcat, modifierOperation, modifier }) => {
     if (modifierOperation !== MODIFIER_OPERATION.NONE) {
-      return stringToConcat.concat(MODIFIER_SYMBOLS[modifierOperation], modifier.toString());
+      const modSymbol = MODIFIER_SYMBOLS[modifierOperation];
+
+      return stringToConcat.concat(`${modSymbol}`, modifier.toString());
     } else {
       return stringToConcat;
     }
   };
 
   const createEquation = ({ list, modifierOperation, modifier }): string => {
-    let rollsAdded = list.join(' + ');
+    let rollsAdded = list.join('+');
 
     const equation = addModifierToString({
       stringToConcat: rollsAdded,
@@ -59,6 +49,18 @@
     return legend;
   };
 
+  const animateElement = () => {
+    // Remove Animation (Resets element)
+    animationState = STYLE_NONE;
+    opacityState = OPACITY_0;
+
+    setTimeout(() => {
+      // Add Animation (Triggers animation)
+      animationState = MOVE_IN_ANIMATION;
+      opacityState = OPACITY_1;
+    }, 50);
+  };
+
   // Reactive Statements
   $: {
     if (rollResult && animate) {
@@ -69,7 +71,9 @@
 </script>
 
 <li
-  class="flex justify-center items-center shadow-lg my-4 border bg-[#172026] text-white last:w-80 w-40"
+  class={`flex justify-center items-center shadow-lg my-4 border bg-black text-white last:w-80 w-40 ${
+    animate && 'animate-moveInFromRight'
+  }`}
   style={animate ? `animation: ${animationState}; opacity: ${opacityState};` : ''}
 >
   <div class="flex flex-row justify-between m-4 w-full h-full overflow-hidden">
@@ -77,7 +81,9 @@
       <div class="text-sm">{name}</div>
       <div class="text-lg overflow-hidden whitespace-nowrap text-ellipsis">
         <div class="inline">{`D${diceType}`}</div>
-        <div class="inline">{createEquation({ list, modifierOperation, modifier })}</div>
+        <div class="inline tracking-[.25em]">
+          {createEquation({ list, modifierOperation, modifier })}
+        </div>
       </div>
       <div class="text-stone-700">
         {createLegend({ list, diceType, modifierOperation, modifier })}

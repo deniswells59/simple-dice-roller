@@ -35,7 +35,7 @@
 </script>
 
 {#if showRollResultList}
-  <div class="fixed bottom-10 right-10 flex flex-col items-end">
+  <div class="fixed bottom-10 right-10 flex flex-col items-end z-10">
     <ul class="flex flex-col items-end">
       {#each prevRolls as rollResult}
         <RollResultComponent {rollResult} animate={false} />
