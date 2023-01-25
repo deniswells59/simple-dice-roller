@@ -15,7 +15,7 @@ describe('CustomForm Component', async () => {
   test('it renders and opens form', async () => {
     const { getByText, getByPlaceholderText } = render(CustomForm);
 
-    const customFormButton = getByText('+ Custom');
+    const customFormButton = getByText('+ Create');
     expect(customFormButton).toBeInTheDocument();
 
     fireEvent(customFormButton, new MouseEvent('click'));
@@ -39,7 +39,7 @@ describe('CustomForm Component', async () => {
     };
 
     // 1. Opens form
-    const customFormButton = getByText('+ Custom');
+    const customFormButton = getByText('+ Create');
     fireEvent(customFormButton, new MouseEvent('click'));
 
     await tick();

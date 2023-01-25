@@ -8,6 +8,7 @@
 </script>
 
 <Page>
+  <CustomForm staticForm={true} />
   <DiceButtons />
   <RollResultList />
   <CustomForm />

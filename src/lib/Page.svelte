@@ -1,3 +1,3 @@
-<main class="w-screen h-screen bg-page">
+<main class="w-screen h-full bg-page">
   <slot />
 </main>

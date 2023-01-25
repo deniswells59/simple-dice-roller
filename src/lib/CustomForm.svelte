@@ -1,12 +1,21 @@
 <script lang="ts">
-  import { customRolls } from '../store';
+  import { customRolls, rollResults } from '../store';
 
-  import { DICE_LIST, Roll, MODIFIER_OPERATION, MODIFIER_SYMBOLS } from '../types/Roll';
+  import {
+    DICE_LIST,
+    Roll,
+    MODIFIER_OPERATION,
+    MODIFIER_SYMBOLS,
+  } from '../types/Roll';
 
   import Button from './Button.svelte';
   import Container from './Container.svelte';
   import Dropdown from './Dropdown.svelte';
   import Input from './Input.svelte';
+
+  import { rollDice } from '../utils/rollDice';
+
+  export let staticForm = false;
 
   const unpoplulatedRoll: Roll = {
     name: '',
@@ -31,7 +40,9 @@
   const onInputChange = (event: Event): void => {
     const target = event.target as HTMLInputElement;
     const key = target.id;
-    const newValue = isNaN(parseInt(target.value)) ? target.value : parseInt(target.value);
+    const newValue = isNaN(parseInt(target.value))
+      ? target.value
+      : parseInt(target.value);
 
     customRoll[key] = newValue;
   };
@@ -42,25 +53,51 @@
     const newCustomRoll = { ...customRoll };
     closeForm();
 
-    customRolls.update((currentCustomRolls) => [...currentCustomRolls, newCustomRoll]);
+    customRolls.update((currentCustomRolls) => [
+      ...currentCustomRolls,
+      newCustomRoll,
+    ]);
+  };
+
+  const onRollCustomValues = (e: Event) => {
+    e.preventDefault();
+
+    const rollResult = rollDice({
+      name: 'Custom Roll',
+      numOfDice: customRoll.numOfDice,
+      diceType: customRoll.diceType,
+      modifierOperation: customRoll.modifierOperation,
+      modifier: customRoll.modifier,
+    });
+
+    rollResults.update((rollResultsList) => {
+      return [...rollResultsList, rollResult];
+    });
   };
 </script>
 
-<Container class="my-8 mx-2">
-  {#if !customRollFormOpen}
-    <Button class="min-h-[10%] w-full bg-white animate-appear" onClickHandler={openForm}
-      >+ Custom</Button
+<Container>
+  {#if !customRollFormOpen && !staticForm}
+    <Button
+      class="my-8 mx-2 min-h-[10%] w-full bg-white animate-appear"
+      onClickHandler={openForm}>+ Create</Button
     >
   {:else}
-    <Container class="p-2 my-8 border-2 border-black bg-white animate-appear">
-      <form on:submit={createCustomRoll}>
-        <Input
-          class="w-full my-4"
-          placeholder="Name"
-          id="name"
-          type="text"
-          onChange={onInputChange}
-        />
+    <Container
+      class="my-8 border-2 border-black bg-white animate-appear {staticForm &&
+        'py-4'}"
+    >
+      <form on:submit={!staticForm ? createCustomRoll : onRollCustomValues}>
+        {#if !staticForm}
+          <Input
+            class="w-full my-4"
+            placeholder="Name"
+            id="name"
+            type="text"
+            required
+            onChange={onInputChange}
+          />
+        {/if}
 
         <table>
           <tr class="w-full">
@@ -79,6 +116,7 @@
                 min="1"
                 type="number"
                 value={customRoll.numOfDice}
+                required
                 onChange={onInputChange}
               />
             </td>
@@ -96,7 +134,9 @@
               <Dropdown
                 class="w-full text-center"
                 id="modifierOperation"
-                options={Object.keys(MODIFIER_OPERATION).map((k) => MODIFIER_SYMBOLS[k])}
+                options={Object.keys(MODIFIER_OPERATION).map(
+                  (k) => MODIFIER_SYMBOLS[k]
+                )}
                 values={Object.keys(MODIFIER_OPERATION)}
                 selectedValue={customRoll.modifierOperation}
                 onChange={onInputChange}
@@ -111,14 +151,23 @@
                 type="number"
                 value={customRoll.modifier}
                 onChange={onInputChange}
-                disabled={customRoll.modifierOperation === MODIFIER_OPERATION.NONE}
+                disabled={customRoll.modifierOperation ===
+                  MODIFIER_OPERATION.NONE}
               />
             </td>
           </tr>
         </table>
 
-        <Button type="submit" class="w-full mt-6 mb-2" primaryAction>Save</Button>
-        <Button class="w-full mb-2" onClickHandler={closeForm}>Cancel</Button>
+        {#if !staticForm}
+          <Button type="submit" class="w-full mt-6 mb-2" primaryAction
+            >Save</Button
+          >
+          <Button class="w-full mb-2" onClickHandler={closeForm}>Cancel</Button>
+        {:else}
+          <Button type="submit" class="w-full mt-6 mb-2" primaryAction
+            >Roll</Button
+          >
+        {/if}
       </form>
     </Container>
   {/if}
