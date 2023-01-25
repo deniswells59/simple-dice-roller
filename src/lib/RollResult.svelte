@@ -7,6 +7,9 @@
   const STYLE_NONE = 'none';
   const OPACITY_0 = '0';
   const OPACITY_1 = '1';
+
+  // Needed this here even though it's repeated in tailwind.config
+  // Not sure why. I'll chalk it up to tailwind being weird
   const MOVE_IN_ANIMATION = 'moveInFromRight .35s ease-out';
 
   let animationState = STYLE_NONE;
