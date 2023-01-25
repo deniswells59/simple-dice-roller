@@ -75,7 +75,7 @@
 <Container
   class="border-2 border-black bg-white {!staticForm
     ? 'pt-2 pb-4 mx-3'
-    : 'py-4 my-8 m-3'}"
+    : 'py-4 my-1'}"
 >
   <form on:submit={!staticForm ? createCustomRoll : onRollCustomValues}>
     {#if !staticForm}

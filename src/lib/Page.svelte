@@ -1,3 +1,3 @@
-<main class="w-screen h-full bg-page">
+<main class="w-screen min-h-screen bg-page py-1">
   <slot />
 </main>

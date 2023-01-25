@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   export let options = [];
   export let values = [];
   export let selectedValue = null;
