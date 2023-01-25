@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/svelte';
 import { tick } from 'svelte';
 import { get } from 'svelte/store';
 
-import CustomForm from '../CustomForm.svelte';
+import CustomForm from '../CustomFormModal.svelte';
 
 import { customRolls } from '../../store';
 import {
