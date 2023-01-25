@@ -7,7 +7,7 @@
   import { default as RollResultComponent } from './RollResult.svelte';
 
   let showRollResultList = false;
-  let rollListTimeoutID: ReturnType<typeof setTimeout>;;
+  let rollListTimeoutID: ReturnType<typeof setTimeout>;
   let prevRolls: RollResult[] = [];
   let latestRollResult: RollResult;
 
@@ -35,16 +35,17 @@
 </script>
 
 {#if showRollResultList}
-  <div class="fixed bottom-10 right-10 flex flex-col items-end z-10">
+  <div class="fixed bottom-5 right-2 flex flex-col items-end z-10">
     <ul class="flex flex-col items-end">
       {#each prevRolls as rollResult}
-        <RollResultComponent {rollResult} animate={false} />
+        <RollResultComponent {rollResult} />
       {/each}
 
-      <RollResultComponent rollResult={latestRollResult} />
+      <RollResultComponent rollResult={latestRollResult} primary={true} />
     </ul>
-    <Button onClickHandler={() => closeRollList()} cssClass="border-0 w-auto bg-white"
-      >Clear X</Button
+    <Button
+      onClickHandler={() => closeRollList()}
+      cssClass="border-0 w-auto bg-white">Clear X</Button
     >
   </div>
 {/if}
