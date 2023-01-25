@@ -21,6 +21,6 @@
   "rules": {
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-    "ban-ts-comment": ["allow", "always"]
+    "@typescript-eslint/ban-ts-comment": "off"
   }
 }

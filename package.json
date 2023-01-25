@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "lint": "npx eslint --ext js,ts,svelte src",
     "test": "npx vitest",
     "coverage": "npx vitest run --coverage",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "preinstall": "git config core.hooksPath hooks",
-    "precommit": "npx vitest run"
+    "precommit": "npx vitest run && npm run check"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",

@@ -7,7 +7,7 @@
   import { default as RollResultComponent } from './RollResult.svelte';
 
   let showRollResultList = false;
-  let rollListTimeoutID;
+  let rollListTimeoutID: ReturnType<typeof setTimeout>;;
   let prevRolls: RollResult[] = [];
   let latestRollResult: RollResult;
 

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { MODIFIER_OPERATION, MODIFIER_SYMBOLS } from '../types/Roll';
+  import { MODIFIER_OPERATION, MODIFIER_SYMBOLS, RollResult } from '../types/Roll';
 
-  export let rollResult;
+  export let rollResult: RollResult;
   export let animate = true;
 
   const STYLE_NONE = 'none';

@@ -6,7 +6,7 @@ import RollResultList from '../RollResultList.svelte';
 import * as config from '../../constants/config';
 
 import { rollResults } from '../../store';
-import { DICE_LIST, MODIFIER_OPERATION, MODIFIER_SYMBOLS } from '../../types/Roll';
+import { DICE_LIST, MODIFIER_OPERATION } from '../../types/Roll';
 
 vi.mock('../../constants/config', () => ({
   __esModule: true,

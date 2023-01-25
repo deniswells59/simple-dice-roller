@@ -28,8 +28,9 @@
     customRoll = { ...unpoplulatedRoll };
   };
 
-  const onInputChange = ({ event, key }: { event: Event; key: string }): void => {
+  const onInputChange = (event: Event): void => {
     const target = event.target as HTMLInputElement;
+    const key = target.id;
     const newValue = isNaN(parseInt(target.value)) ? target.value : parseInt(target.value);
 
     customRoll[key] = newValue;
@@ -56,8 +57,9 @@
         <Input
           class="w-full my-4"
           placeholder="Name"
+          id="name"
           type="text"
-          onChange={(e) => onInputChange({ event: e, key: 'name' })}
+          onChange={onInputChange}
         />
 
         <table>
@@ -77,7 +79,7 @@
                 min="1"
                 type="number"
                 value={customRoll.numOfDice}
-                onChange={(e) => onInputChange({ event: e, key: 'numOfDice' })}
+                onChange={onInputChange}
               />
             </td>
             <td class="w-[20%]">
@@ -87,7 +89,7 @@
                 options={Object.keys(DICE_LIST)}
                 values={Object.keys(DICE_LIST).map((k) => DICE_LIST[k])}
                 selectedValue={customRoll.diceType}
-                onChange={(e) => onInputChange({ event: e, key: 'diceType' })}
+                onChange={onInputChange}
               />
             </td>
             <td class="w-[20%]">
@@ -97,7 +99,7 @@
                 options={Object.keys(MODIFIER_OPERATION).map((k) => MODIFIER_SYMBOLS[k])}
                 values={Object.keys(MODIFIER_OPERATION)}
                 selectedValue={customRoll.modifierOperation}
-                onChange={(e) => onInputChange({ event: e, key: 'modifierOperation' })}
+                onChange={onInputChange}
               />
             </td>
             <td class="w-[20%]">
@@ -108,7 +110,7 @@
                 min="0"
                 type="number"
                 value={customRoll.modifier}
-                onChange={(e) => onInputChange({ event: e, key: 'modifier' })}
+                onChange={onInputChange}
                 disabled={customRoll.modifierOperation === MODIFIER_OPERATION.NONE}
               />
             </td>
