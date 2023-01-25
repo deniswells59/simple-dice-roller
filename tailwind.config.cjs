@@ -12,6 +12,14 @@ module.exports = {
             opacity: '1',
           },
         },
+        appearModal: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '0.7',
+          },
+        },
         moveInFromRight: {
           '0%': {
             transform: 'translateX(100%)',
@@ -23,6 +31,7 @@ module.exports = {
       },
       animation: {
         appear: 'appear .2s linear',
+        appearModal: 'appearModal .2s linear',
         moveInFromRight: 'moveInFromRight 1s linear',
       },
     },
