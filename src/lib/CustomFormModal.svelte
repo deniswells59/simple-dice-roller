@@ -1,7 +1,7 @@
 <script lang="ts">
   import Button from './Button.svelte';
   import Container from './Container.svelte';
-  import CustomForm from './CustomForm.svelte';
+  import DiceForm from './DiceForm.svelte';
   import Modal from './Modal.svelte';
 
   let showModal = false;
@@ -18,5 +18,5 @@
 </Container>
 
 <Modal {showModal} {closeModal}>
-  <CustomForm closeForm={closeModal} />
+  <DiceForm closeForm={closeModal} />
 </Modal>

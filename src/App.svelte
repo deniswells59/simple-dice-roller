@@ -4,12 +4,12 @@
   import DiceButtons from './lib/DiceButtons.svelte';
   import Page from './lib/Page.svelte';
   import RollResultList from './lib/RollResultList.svelte';
-  import CustomForm from './lib/CustomForm.svelte';
+  import QuickRollForm from './lib/QuickRollForm.svelte';
   import CustomFormModal from './lib/CustomFormModal.svelte';
 </script>
 
 <Page>
-  <CustomForm staticForm={true} />
+  <QuickRollForm />
   <DiceButtons />
   <RollResultList />
 
