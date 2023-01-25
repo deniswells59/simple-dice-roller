@@ -91,9 +91,6 @@
   }
   $: ({ name, diceType, list, modifierOperation, modifier, value } =
     rollResult);
-  $: {
-    console.log('@@ RENDERING NEW RESULT - diceType: ', rollResult.diceType);
-  }
 </script>
 
 <li

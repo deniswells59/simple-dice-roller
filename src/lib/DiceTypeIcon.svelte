@@ -4,7 +4,6 @@
   export let typeOfDice;
   export let whiteFill = false;
 
-  console.log('@@typeOfDice:', typeOfDice);
   const { asset, styleOverride } = DICE_ASSETS_BY_TYPE[typeOfDice];
 </script>
 
