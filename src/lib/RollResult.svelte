@@ -25,7 +25,7 @@
     }
   };
 
-  const createEquation = ({ list, modifierOperation, modifier }): string => {
+  const createEquationString = ({ list, modifierOperation, modifier }): string => {
     let rollsAdded = list.join('+');
 
     const equation = addModifierToString({
@@ -37,7 +37,7 @@
     return equation;
   };
 
-  const createLegend = ({ list, diceType, modifierOperation, modifier }): string => {
+  const createLegendString = ({ list, diceType, modifierOperation, modifier }): string => {
     const diceAmount = list.length;
     const diceTypeText = `d${diceType}`;
 
@@ -85,11 +85,11 @@
       <div class="text-lg overflow-hidden whitespace-nowrap text-ellipsis">
         <div class="inline">{`D${diceType}`}</div>
         <div class="inline tracking-[.25em]">
-          {createEquation({ list, modifierOperation, modifier })}
+          {createEquationString({ list, modifierOperation, modifier })}
         </div>
       </div>
       <div class="text-stone-700">
-        {createLegend({ list, diceType, modifierOperation, modifier })}
+        {createLegendString({ list, diceType, modifierOperation, modifier })}
       </div>
     </div>
 
