@@ -1,4 +1,9 @@
-import { DiceList, MODIFIER_OPERATION, ModifierOperation, RollResult } from '../types/Roll';
+import {
+  DiceList,
+  MODIFIER_OPERATION,
+  ModifierOperation,
+  RollResult,
+} from '../types/Roll';
 
 const getRandomByMinMax = (min: number, max: number) => {
   const randomBuffer = new Uint32Array(1);

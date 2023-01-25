@@ -5,7 +5,11 @@ import { get } from 'svelte/store';
 import CustomForm from '../CustomForm.svelte';
 
 import { customRolls } from '../../store';
-import { DICE_LIST, MODIFIER_OPERATION, MODIFIER_SYMBOLS } from '../../types/Roll';
+import {
+  DICE_LIST,
+  MODIFIER_OPERATION,
+  MODIFIER_SYMBOLS,
+} from '../../types/Roll';
 
 describe('CustomForm Component', async () => {
   test('it renders and opens form', async () => {
@@ -23,7 +27,8 @@ describe('CustomForm Component', async () => {
   });
 
   test('it fills and submits form', async () => {
-    const { getByText, getByPlaceholderText, getByDisplayValue } = render(CustomForm);
+    const { getByText, getByPlaceholderText, getByDisplayValue } =
+      render(CustomForm);
 
     const rollToCreate = {
       name: 'Fireball!',
@@ -47,25 +52,33 @@ describe('CustomForm Component', async () => {
 
     // 3. Add Number of Dice
     const numOfDiceInput = getByPlaceholderText('1');
-    fireEvent.change(numOfDiceInput, { target: { value: rollToCreate.numOfDice } });
+    fireEvent.change(numOfDiceInput, {
+      target: { value: rollToCreate.numOfDice },
+    });
 
     expect(numOfDiceInput).toHaveValue(rollToCreate.numOfDice);
 
     // 4. Add Dice Type
     const diceTypeInput = getByDisplayValue('D20');
-    fireEvent.change(diceTypeInput, { target: { value: rollToCreate.diceType } });
+    fireEvent.change(diceTypeInput, {
+      target: { value: rollToCreate.diceType },
+    });
 
     expect(numOfDiceInput).toHaveValue(rollToCreate.diceType);
 
     // 5. Add Modifier Operation
     const modOpInput = getByDisplayValue(MODIFIER_SYMBOLS.NONE);
-    fireEvent.change(modOpInput, { target: { value: rollToCreate.modifierOperation } });
+    fireEvent.change(modOpInput, {
+      target: { value: rollToCreate.modifierOperation },
+    });
 
     expect(modOpInput).toHaveValue(rollToCreate.modifierOperation);
 
     // 6. Add Modifier Number
     const modNumberInput = getByPlaceholderText('0');
-    fireEvent.change(modNumberInput, { target: { value: rollToCreate.modifier } });
+    fireEvent.change(modNumberInput, {
+      target: { value: rollToCreate.modifier },
+    });
 
     expect(modNumberInput).toHaveValue(rollToCreate.modifier);
 

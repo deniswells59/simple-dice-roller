@@ -12,7 +12,7 @@
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "preinstall": "git config core.hooksPath hooks",
-    "precommit": "npx vitest run && npm run check"
+    "precommit": "npx prettier --write . && npm run check && npx vitest run"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",

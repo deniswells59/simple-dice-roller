@@ -61,7 +61,10 @@ describe('DiceButtons Component', async () => {
 
     fireEvent(D20Button, new MouseEvent('click'));
 
-    expect(rollDice).toHaveBeenCalledWith({ name: 'D20', diceType: DICE_LIST.D20 });
+    expect(rollDice).toHaveBeenCalledWith({
+      name: 'D20',
+      diceType: DICE_LIST.D20,
+    });
   });
 
   test('it calls rollDice with custom roll', async () => {
