@@ -1,6 +1,6 @@
 <script lang="ts">
   import generateUniqueID from 'generate-unique-id';
-  import { customRolls, rollResults } from '../store';
+  import { rollResults } from '../store';
 
   import {
     DICE_LIST,
@@ -26,6 +26,7 @@
 
   export let staticForm = false;
   export let closeForm = () => {};
+  export let onSubmit = (roll: Roll) => {};
   export let defaultValues: Roll = unpoplulatedRoll;
 
   let customRoll: Roll = { ...defaultValues };
@@ -45,33 +46,15 @@
     customRoll[key] = newValue;
   };
 
-  const createCustomRoll = (e: Event) => {
+  const onSubmitHandler = (e: Event) => {
     e.preventDefault();
+
     const uniqueID = generateUniqueID();
-
     const newCustomRoll = { id: uniqueID, ...customRoll };
+
+    onSubmit(newCustomRoll);
+
     closeAndCleanForm();
-
-    customRolls.update((currentCustomRolls) => [
-      ...currentCustomRolls,
-      newCustomRoll,
-    ]);
-  };
-
-  const onRollCustomValues = (e: Event) => {
-    e.preventDefault();
-
-    const rollResult = rollDice({
-      name: 'Custom Roll',
-      numOfDice: customRoll.numOfDice,
-      diceType: customRoll.diceType,
-      modifierOperation: customRoll.modifierOperation,
-      modifier: customRoll.modifier,
-    });
-
-    rollResults.update((rollResultsList) => {
-      return [...rollResultsList, rollResult];
-    });
   };
 </script>
 
@@ -80,7 +63,7 @@
     ? 'pt-2 pb-4 mx-3'
     : 'py-4 my-1'}"
 >
-  <form on:submit={!staticForm ? createCustomRoll : onRollCustomValues}>
+  <form on:submit={onSubmitHandler}>
     {#if !staticForm}
       <Input
         class="w-full my-4"
