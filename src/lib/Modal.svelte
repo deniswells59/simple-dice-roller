@@ -1,6 +1,7 @@
 <script lang="ts">
-  export let showModal;
-  export let closeModal;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  export let closeModal = () => {};
+  export let showModal: boolean;
 </script>
 
 {#if showModal}
@@ -17,4 +18,3 @@
     <slot />
   </div>
 {/if}
-

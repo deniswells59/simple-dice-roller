@@ -5,7 +5,7 @@
 
   import Button from './Button.svelte';
   import Container from './Container.svelte';
-  import DiceTypeIcon from './DiceTypeIcon.svelte';
+  import DiceTypeIcon from '../assets/icons/components/DiceTypeIcon.svelte';
 
   const onBasicClickHandler = ({
     diceType,

@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { DICE_ASSETS_BY_TYPE } from '../constants/assets';
+  import type { DiceList } from '../../../types/Roll';
+  import { DICE_ASSETS_BY_TYPE } from '../diceIcons';
 
-  export let typeOfDice;
+  export let typeOfDice: DiceList;
   export let whiteFill = false;
 
   const { asset, styleOverride } = DICE_ASSETS_BY_TYPE[typeOfDice];
