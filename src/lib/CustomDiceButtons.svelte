@@ -33,7 +33,7 @@
 <Container
   header="Custom"
   modalOpen={customRollSettingsModalOpen}
-  hasSecondaryAction={true}
+  hasSecondaryAction={$customRolls.length ? true : false}
   secondaryAction={openCustomRollSettingsModal}
 >
   {#each $customRolls as customRoll}

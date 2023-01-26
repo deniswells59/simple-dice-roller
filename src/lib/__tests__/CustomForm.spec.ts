@@ -1,6 +1,7 @@
 import { fireEvent, render } from '@testing-library/svelte';
 import { tick } from 'svelte';
 import { get } from 'svelte/store';
+import { vi } from 'vitest';
 
 import CustomForm from '../CustomFormModal.svelte';
 
@@ -10,6 +11,11 @@ import {
   MODIFIER_OPERATION,
   MODIFIER_SYMBOLS,
 } from '../../types/Roll';
+
+vi.mock('generate-unique-id', () => ({
+  __esModule: true,
+  default: () => 'ABC123',
+}));
 
 describe('CustomForm Component', async () => {
   test('it renders and opens form', async () => {
@@ -90,6 +96,6 @@ describe('CustomForm Component', async () => {
 
     // Verify state
     const currentCustomRolls = get(customRolls);
-    expect(currentCustomRolls[0]).toEqual(rollToCreate);
+    expect(currentCustomRolls[0]).toEqual({ id: 'ABC123', ...rollToCreate});
   });
 });

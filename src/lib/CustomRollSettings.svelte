@@ -4,9 +4,22 @@
   import { customRolls } from '../store';
   import Container from './Container.svelte';
   import Button from './Button.svelte';
+  import DiceForm from './DiceForm.svelte';
 
   export let settingsModalOpen = false;
   export let closeSettingsModal = () => {};
+
+  let settingsFormOpen = false;
+  let rollToEdit = '';
+
+  const openSettingsForm = (id: string) => {
+    rollToEdit = id;
+    settingsFormOpen = true;
+  };
+
+  const closeSettingsForm = () => {
+    settingsFormOpen = false;
+  };
 </script>
 
 <Modal showModal={settingsModalOpen} closeModal={closeSettingsModal}>
@@ -15,15 +28,19 @@
     header="Custom Roll Settings"
     visibilityToggle={false}
   >
-    <p>Select a custom roll to edit.</p>
-    <div class="block w-full max-h-100 overflow-scroll">
-      {#each $customRolls as customRoll}
-        <Button
-          class="my-2 w-full"
-          onClickHandler={() => console.log('customeRoll', customRoll.name)}
-          >{customRoll.name}</Button
-        >
-      {/each}
-    </div>
+    {#if settingsFormOpen}
+      <DiceForm />
+    {:else}
+      <p>Select a custom roll to edit.</p>
+      <div class="block w-full max-h-100 overflow-scroll">
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
+      </div>
+    {/if}
   </Container>
 </Modal>

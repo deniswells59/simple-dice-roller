@@ -37,6 +37,7 @@ export const MODIFIER_SYMBOLS = {
 export type ModifierOperation = ObjectValues<typeof MODIFIER_OPERATION>;
 
 export interface Roll {
+  id?: string;
   name: string;
   numOfDice: number;
   diceType: DiceList;

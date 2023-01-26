@@ -1,4 +1,5 @@
 <script lang="ts">
+  import generateUniqueID from 'generate-unique-id';
   import { customRolls, rollResults } from '../store';
 
   import {
@@ -15,9 +16,6 @@
 
   import { rollDice } from '../utils/rollDice';
 
-  export let staticForm = false;
-  export let closeForm = () => {};
-
   const unpoplulatedRoll: Roll = {
     name: '',
     numOfDice: 1,
@@ -26,7 +24,11 @@
     modifier: 0,
   };
 
-  let customRoll: Roll = { ...unpoplulatedRoll };
+  export let staticForm = false;
+  export let closeForm = () => {};
+  export let defaultValues: Roll = unpoplulatedRoll;
+
+  let customRoll: Roll = { ...defaultValues };
 
   const closeAndCleanForm = () => {
     closeForm();
@@ -45,8 +47,9 @@
 
   const createCustomRoll = (e: Event) => {
     e.preventDefault();
+    const uniqueID = generateUniqueID();
 
-    const newCustomRoll = { ...customRoll };
+    const newCustomRoll = { id: uniqueID, ...customRoll };
     closeAndCleanForm();
 
     customRolls.update((currentCustomRolls) => [
