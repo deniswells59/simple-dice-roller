@@ -39,7 +39,6 @@ describe('CustomDiceButtons Component', async () => {
     expect(customButtonExists).toBeInTheDocument();
   });
 
-
   test('it calls rollDice with custom roll', async () => {
     customRolls.set([
       {
