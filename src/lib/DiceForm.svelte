@@ -23,7 +23,7 @@
 
   export let staticForm = false;
   export let closeForm = () => {};
-  export let onSubmit = (roll: Roll) => {};
+  export let onSubmit = (_roll: Roll) => {};
   export let defaultValues: Roll = unpoplulatedRoll;
   export let containerStyles: string = '';
   export let showCloseButton: boolean = true;

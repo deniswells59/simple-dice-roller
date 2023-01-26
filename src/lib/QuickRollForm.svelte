@@ -3,13 +3,15 @@
   import Button from './Button.svelte';
   import DiceForm from './DiceForm.svelte';
 
+  import type { Roll } from '../types/Roll';
+
   import { rollResults } from '../store';
   import { rollDice } from '../utils/rollDice';
 
-  const onRollCustomValues = (quickRoll) => {
+  const onRollCustomValues = (quickRoll: Roll) => {
     const rollResult = rollDice({
-      name: 'Quick Roll',
       ...quickRoll,
+      name: 'Quick Roll',
     });
 
     rollResults.update((rollResultsList) => {
