@@ -57,7 +57,7 @@
   };
 </script>
 
-<Container class={`${containerStyles} border-2 border-black bg-white `}>
+<Container class={`${containerStyles} border-2 border-black bg-white`}>
   <form on:submit={onSubmitHandler}>
     {#if !staticForm}
       <Input

@@ -13,6 +13,11 @@
   let settingsFormOpen = false;
   let rollToEdit: Roll;
 
+  const closeModal = () => {
+    closeSettingsModal();
+    closeSettingsForm();
+  };
+
   const openSettingsForm = (id: string) => {
     rollToEdit = $customRolls.filter((roll) => {
       return roll.id === id;
@@ -22,18 +27,44 @@
   };
 
   const closeSettingsForm = () => {
+    rollToEdit = null;
     settingsFormOpen = false;
+  };
+
+  const submitEditForm = (editFormValues) => {
+    customRolls.update((currentCustomRolls) => {
+      const safeToEditList = [...currentCustomRolls];
+
+      const newCustomRolls = safeToEditList.map((customRoll) => {
+        if (customRoll.id === editFormValues.id) {
+          return editFormValues;
+        } else {
+          return customRoll;
+        }
+      });
+
+      return newCustomRolls;
+    });
   };
 </script>
 
-<Modal showModal={settingsModalOpen} closeModal={closeSettingsModal}>
+<Modal showModal={settingsModalOpen} {closeModal}>
   <Container
     class="flex flex-row mx-2 p-2 border-8 border-black bg-white"
     header="Custom Roll Settings"
     visibilityToggle={false}
   >
     {#if settingsFormOpen}
-      <DiceForm defaultValues={rollToEdit} closeForm={closeSettingsForm} />
+      <DiceForm
+        containerStyles="border-0 py-0"
+        defaultValues={rollToEdit}
+        closeForm={closeSettingsForm}
+        onSubmit={submitEditForm}
+      >
+        <Button slot="actions" class="w-full my-2" type="submit" primaryAction
+          >Save</Button
+        >
+      </DiceForm>
     {:else}
       <p>Select a custom roll to edit.</p>
       <div class="block w-full max-h-100 overflow-scroll">

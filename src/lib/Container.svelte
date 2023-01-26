@@ -39,16 +39,16 @@
         </div>
 
         {#if visibilityToggle}
-        <span
-          class="w-8 h-8 opacity-40 ml-3 hover:opacity-100 hover:cursor-pointer text-2xl"
-          on:click={toggleVisibility}
-        >
-          {#if contentVisible}
-            <NotVisibleIcon />
-          {:else}
-            <VisibleIcon />
-          {/if}
-        </span>
+          <span
+            class="w-8 h-8 opacity-40 ml-3 hover:opacity-100 hover:cursor-pointer text-2xl"
+            on:click={toggleVisibility}
+          >
+            {#if contentVisible}
+              <NotVisibleIcon />
+            {:else}
+              <VisibleIcon />
+            {/if}
+          </span>
         {/if}
       </div>
       <hr class="w-full h-0.5 border-none bg-black" />
