@@ -87,6 +87,7 @@
         placeholder="Name"
         id="name"
         type="text"
+        value={customRoll.name}
         required
         onChange={onInputChange}
       />

@@ -96,6 +96,6 @@ describe('CustomForm Component', async () => {
 
     // Verify state
     const currentCustomRolls = get(customRolls);
-    expect(currentCustomRolls[0]).toEqual({ id: 'ABC123', ...rollToCreate});
+    expect(currentCustomRolls[0]).toEqual({ id: 'ABC123', ...rollToCreate });
   });
 });

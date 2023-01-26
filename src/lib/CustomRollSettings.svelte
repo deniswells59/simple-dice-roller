@@ -5,15 +5,19 @@
   import Container from './Container.svelte';
   import Button from './Button.svelte';
   import DiceForm from './DiceForm.svelte';
+  import type { Roll } from '../types/Roll';
 
   export let settingsModalOpen = false;
   export let closeSettingsModal = () => {};
 
   let settingsFormOpen = false;
-  let rollToEdit = '';
+  let rollToEdit: Roll;
 
   const openSettingsForm = (id: string) => {
-    rollToEdit = id;
+    rollToEdit = $customRolls.filter((roll) => {
+      return roll.id === id;
+    })[0];
+
     settingsFormOpen = true;
   };
 
@@ -29,7 +33,7 @@
     visibilityToggle={false}
   >
     {#if settingsFormOpen}
-      <DiceForm />
+      <DiceForm defaultValues={rollToEdit} closeForm={closeSettingsForm} />
     {:else}
       <p>Select a custom roll to edit.</p>
       <div class="block w-full max-h-100 overflow-scroll">
