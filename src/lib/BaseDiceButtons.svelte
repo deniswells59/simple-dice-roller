@@ -1,7 +1,7 @@
 <script lang="ts">
   import { rollDice } from '../utils/rollDice';
-  import { DICE_LIST, DiceList, Roll } from '../types/Roll';
-  import { rollResults, customRolls } from '../store';
+  import { DICE_LIST, DiceList } from '../types/Roll';
+  import { rollResults } from '../store';
 
   import Button from './Button.svelte';
   import Container from './Container.svelte';
@@ -18,18 +18,6 @@
 
     rollResults.update((currentRolls) => [...currentRolls, rollResult]);
   };
-
-  const onCustomClickHandler = (customRoll: Roll) => {
-    const rollResult = rollDice({
-      name: customRoll.name,
-      numOfDice: customRoll.numOfDice,
-      diceType: customRoll.diceType,
-      modifierOperation: customRoll.modifierOperation,
-      modifier: customRoll.modifier,
-    });
-
-    rollResults.update((currentRolls) => [...currentRolls, rollResult]);
-  };
 </script>
 
 <Container header="Base Dice" class="my-6">
@@ -40,16 +28,5 @@
         onBasicClickHandler({ diceType: DICE_LIST[diceType], name: diceType })}
       ><DiceTypeIcon typeOfDice={DICE_LIST[diceType]} /> {diceType}</Button
     >
-  {/each}
-</Container>
-
-<Container header="Custom">
-  {#each $customRolls as customRoll}
-    <Button
-      class="sm:-m-[1px] h-20 -my-[1px] w-full bg-white"
-      onClickHandler={() => onCustomClickHandler(customRoll)}
-    >
-      {customRoll.name}
-    </Button>
   {/each}
 </Container>

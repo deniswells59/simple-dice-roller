@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/svelte';
 import { tick } from 'svelte';
 import { vi } from 'vitest';
 
-import DiceButtons from '../DiceButtons.svelte';
+import CustomDiceButtons from '../CustomDiceButtons.svelte';
 
 import { customRolls } from '../../store';
 import { DICE_LIST, MODIFIER_OPERATION } from '../../types/Roll';
@@ -16,25 +16,9 @@ vi.mock('../../utils/rollDice', () => {
   };
 });
 
-describe('DiceButtons Component', async () => {
-  test('it renders', () => {
-    const { getByText } = render(DiceButtons);
-
-    const D20Button = getByText('D20');
-
-    expect(D20Button).toBeInTheDocument();
-  });
-
-  test('it does not render (SANITY CHECK, MIGHT DELETE LATER ¯_(ツ)_/¯', () => {
-    const { queryByText } = render(DiceButtons);
-
-    const nonExistentButton = queryByText('D21');
-
-    expect(nonExistentButton).not.toBeInTheDocument();
-  });
-
+describe('CustomDiceButtons Component', async () => {
   test('it renders custom rolls', async () => {
-    const { queryByText, getByText } = render(DiceButtons);
+    const { queryByText, getByText } = render(CustomDiceButtons);
 
     const customButtonMissing = queryByText('Fireball!');
     expect(customButtonMissing).not.toBeInTheDocument();
@@ -55,17 +39,6 @@ describe('DiceButtons Component', async () => {
     expect(customButtonExists).toBeInTheDocument();
   });
 
-  test('it calls rollDice on click', () => {
-    const { getByText } = render(DiceButtons);
-    const D20Button = getByText('D20');
-
-    fireEvent(D20Button, new MouseEvent('click'));
-
-    expect(rollDice).toHaveBeenCalledWith({
-      name: 'D20',
-      diceType: DICE_LIST.D20,
-    });
-  });
 
   test('it calls rollDice with custom roll', async () => {
     customRolls.set([
@@ -78,7 +51,7 @@ describe('DiceButtons Component', async () => {
       },
     ]);
 
-    const { getByText } = render(DiceButtons);
+    const { getByText } = render(CustomDiceButtons);
     const customButton = getByText('Fireball!');
 
     fireEvent(customButton, new MouseEvent('click'));

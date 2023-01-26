@@ -1,9 +1,12 @@
 <script lang="ts">
-  import VisibleIcon from '../assets/icons/components/VisibleIcon.svelte';
-  import NotVisibleIcon from '../assets/icons/components/NotVisibleIcon.svelte';
-
   export let testId = '';
   export let header = '';
+  export let hasSecondaryAction = false;
+  export let secondaryAction = () => {};
+
+  import VisibleIcon from '../assets/icons/components/VisibleIcon.svelte';
+  import NotVisibleIcon from '../assets/icons/components/NotVisibleIcon.svelte';
+  import CogIcon from '../assets/icons/components/CogIcon.svelte';
 
   let contentVisible = true;
 
@@ -21,7 +24,18 @@
   {#if header}
     <div class="flex flex-col w-full my-4">
       <div class="flex flex-row w-full items-center justify-between">
-        <h1 class="flex text-2xl self-start">{header}</h1>
+        <div class="flex flex-row">
+          <h1 class="flex text-2xl self-start">{header}</h1>
+
+          {#if hasSecondaryAction}
+            <div
+              class="flex items-center w-8 h-8 opacity-40 ml-3 hover:opacity-100 hover:cursor-pointer text-2xl"
+              on:click={secondaryAction}
+            >
+              <CogIcon />
+            </div>
+          {/if}
+        </div>
 
         <span
           class="w-8 h-8 opacity-40 ml-3 hover:opacity-100 hover:cursor-pointer text-2xl"
