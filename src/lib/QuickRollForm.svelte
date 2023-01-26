@@ -1,5 +1,6 @@
 <script lang="ts">
   import Container from './Container.svelte';
+  import Button from './Button.svelte';
   import DiceForm from './DiceForm.svelte';
 
   import { rollResults } from '../store';
@@ -18,5 +19,14 @@
 </script>
 
 <Container header="Quick Roll">
-  <DiceForm staticForm={true} onSubmit={onRollCustomValues} />
+  <DiceForm
+    containerStyles="py-4 my-1"
+    staticForm={true}
+    onSubmit={onRollCustomValues}
+    showCloseButton={false}
+  >
+    <Button slot="actions" type="submit" class="w-full mt-6 mb-2" primaryAction
+      >Roll</Button
+    >
+  </DiceForm>
 </Container>

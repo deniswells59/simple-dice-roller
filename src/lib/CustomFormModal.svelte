@@ -28,5 +28,13 @@
 </Container>
 
 <Modal {showModal} {closeModal}>
-  <DiceForm closeForm={closeModal} onSubmit={createCustomRoll} />
+  <DiceForm
+    containerStyles="pt-2 pb-4 mx-2 border-8"
+    closeForm={closeModal}
+    onSubmit={createCustomRoll}
+  >
+    <Button slot="actions" type="submit" class="w-full mt-6 mb-2" primaryAction
+      >Save</Button
+    >
+  </DiceForm>
 </Modal>

@@ -1,6 +1,5 @@
 <script lang="ts">
   import generateUniqueID from 'generate-unique-id';
-  import { rollResults } from '../store';
 
   import {
     DICE_LIST,
@@ -14,8 +13,6 @@
   import Dropdown from './Dropdown.svelte';
   import Input from './Input.svelte';
 
-  import { rollDice } from '../utils/rollDice';
-
   const unpoplulatedRoll: Roll = {
     name: '',
     numOfDice: 1,
@@ -28,6 +25,8 @@
   export let closeForm = () => {};
   export let onSubmit = (roll: Roll) => {};
   export let defaultValues: Roll = unpoplulatedRoll;
+  export let containerStyles: string = '';
+  export let showCloseButton: boolean = true;
 
   let customRoll: Roll = { ...defaultValues };
 
@@ -58,11 +57,7 @@
   };
 </script>
 
-<Container
-  class="border-2 border-black bg-white {!staticForm
-    ? 'pt-2 pb-4 mx-3'
-    : 'py-4 my-1'}"
->
+<Container class={`${containerStyles} border-2 border-black bg-white `}>
   <form on:submit={onSubmitHandler}>
     {#if !staticForm}
       <Input
@@ -134,13 +129,12 @@
       </tr>
     </table>
 
-    {#if !staticForm}
-      <Button type="submit" class="w-full mt-6 mb-2" primaryAction>Save</Button>
+    <slot name="actions" />
+
+    {#if showCloseButton}
       <Button class="w-full mb-2" onClickHandler={closeAndCleanForm}
         >Cancel</Button
       >
-    {:else}
-      <Button type="submit" class="w-full mt-6 mb-2" primaryAction>Roll</Button>
     {/if}
   </form>
 </Container>
