@@ -10,7 +10,6 @@
   let customRollSettingsModalOpen = false;
 
   const openCustomRollSettingsModal = () => {
-    console.log('@@customRollSettingsModalOpen:', customRollSettingsModalOpen);
     customRollSettingsModalOpen = true;
   };
 
