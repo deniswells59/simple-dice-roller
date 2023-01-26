@@ -13,6 +13,7 @@
   <Container
     class="flex flex-row mx-2 p-2 border-8 border-black bg-white"
     header="Custom Roll Settings"
+    visibilityToggle={false}
   >
     <p>Select a custom roll to edit.</p>
     <div class="block w-full max-h-100 overflow-scroll">

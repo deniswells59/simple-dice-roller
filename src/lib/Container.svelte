@@ -3,6 +3,7 @@
   export let header = '';
   export let hasSecondaryAction = false;
   export let secondaryAction = () => {};
+  export let visibilityToggle = true;
 
   import VisibleIcon from '../assets/icons/components/VisibleIcon.svelte';
   import NotVisibleIcon from '../assets/icons/components/NotVisibleIcon.svelte';
@@ -37,6 +38,7 @@
           {/if}
         </div>
 
+        {#if visibilityToggle}
         <span
           class="w-8 h-8 opacity-40 ml-3 hover:opacity-100 hover:cursor-pointer text-2xl"
           on:click={toggleVisibility}
@@ -47,6 +49,7 @@
             <VisibleIcon />
           {/if}
         </span>
+        {/if}
       </div>
       <hr class="w-full h-0.5 border-none bg-black" />
     </div>
