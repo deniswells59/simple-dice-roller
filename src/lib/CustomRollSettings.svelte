@@ -46,6 +46,24 @@
       return newCustomRolls;
     });
   };
+
+  const removeRoll = () => {
+    customRolls.update((currentCustomRolls) => {
+      const safeToEditList = [...currentCustomRolls];
+
+      const newCustomRolls = safeToEditList.filter((customRoll) => {
+        return customRoll.id !== rollToEdit.id;
+      });
+
+      return newCustomRolls;
+    });
+
+    closeSettingsForm();
+
+    if ($customRolls.length < 1) {
+      closeSettingsModal();
+    }
+  };
 </script>
 
 <Modal showModal={settingsModalOpen} {closeModal}>
@@ -61,12 +79,14 @@
         closeForm={closeSettingsForm}
         onSubmit={submitEditForm}
       >
-        <Button slot="actions" class="w-full my-2" type="submit" primaryAction
-          >Save</Button
-        >
+        <span slot="actions">
+          <Button class="w-full my-2" type="submit" primaryAction>Save</Button>
+          <Button class="w-full my-2" onClickHandler={removeRoll}>Remove</Button
+          >
+        </span>
       </DiceForm>
     {:else}
-      <p>Select a custom roll to edit.</p>
+      <p>Select a roll to edit.</p>
       <div class="block w-full max-h-100 overflow-scroll">
         {#each $customRolls as customRoll}
           <Button
