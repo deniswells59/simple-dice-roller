@@ -21,17 +21,14 @@
   let animationState = STYLE_NONE;
   let opacityState = OPACITY_0;
 
-  const addModifierToString = ({
-    stringToConcat,
-    modifierOperation,
-    modifier,
-  }) => {
+  const getModifierList = ({ modifierOperation, modifier }) => {
     if (modifierOperation !== MODIFIER_OPERATION.NONE) {
       const modSymbol = MODIFIER_SYMBOLS[modifierOperation];
+      return [modSymbol, modifier];
 
-      return stringToConcat.concat(`${modSymbol}`, modifier.toString());
+      // return stringToConcat.concat(` ${modSymbol} `, modifier.toString());
     } else {
-      return stringToConcat;
+      return [];
     }
   };
 
@@ -39,15 +36,30 @@
     list,
     modifierOperation,
     modifier,
-  }): string => {
-    let rollsAdded = list.join('+');
+  }): string[] => {
+    let rollsAdded = list.join(' + ');
 
-    const equation = addModifierToString({
-      stringToConcat: rollsAdded,
+    // Start with list: ['1', '2', '3']
+    // Create tuples: [['1', '+'], ['2', '+'], ['3', '+']]
+    const listOfNumAndSymbolTuples = list.map((num: string) => [num, '+']);
+    console.log('@@ listOfNumAndSymbolTuples:', listOfNumAndSymbolTuples);
+
+    // Flatten tuples: ['1', '+', '2', '+', '3', '+']
+    const flattenedNumAndSymbolTuples = [].concat(...listOfNumAndSymbolTuples);
+    console.log('@@ flattenedNumAndSymbolTuples:', flattenedNumAndSymbolTuples);
+
+    // Remove hanging addition symbol: ['1', '+', '2', '+', '3']
+    const removedLastSymbol = flattenedNumAndSymbolTuples.slice(0, -1);
+    console.log('@@ removedLastSymbol:', removedLastSymbol);
+
+    const modifierList = getModifierList({
       modifierOperation,
       modifier,
     });
 
+    const equation = [...removedLastSymbol, ...modifierList];
+
+    console.log('@@ equation:', equation);
     return equation;
   };
 
@@ -62,11 +74,13 @@
 
     let diceString = `${diceAmount}${diceTypeText}`;
 
-    const legend = addModifierToString({
-      stringToConcat: diceString,
+    const modifierList = getModifierList({
       modifierOperation,
       modifier,
     });
+
+    const modifierString = modifierList.join('');
+    const legend = `${diceString}${modifierString}`;
 
     return legend;
   };
@@ -116,8 +130,10 @@
           {#key diceType}
             <DiceTypeIcon typeOfDice={diceType} whiteFill={true} />
           {/key}
-          <div class="inline tracking-[.25em]">
-            {createEquationString({ list, modifierOperation, modifier })}
+          <div class="inline">
+            {#each createEquationString( { list, modifierOperation, modifier } ) as term}
+              <span class="mx-0.5 first:ml-0">{term}</span>
+            {/each}
           </div>
         </div>
         <div class="text-stone-700">
