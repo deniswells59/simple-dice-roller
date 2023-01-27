@@ -1,6 +1,7 @@
 <script lang="ts">
-  export let showModal;
-  export let closeModal;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  export let closeModal = () => {};
+  export let showModal: boolean;
 </script>
 
 {#if showModal}
@@ -10,11 +11,10 @@
   />
 
   <div
-    class="fixed top-1/3 left-0 w-screen z-50 animate-appear"
+    class="fixed left-0 w-screen z-50 animate-appear top-1/2 -translate-y-1/2"
     role="dialog"
     aria-modal="true"
   >
     <slot />
   </div>
 {/if}
-

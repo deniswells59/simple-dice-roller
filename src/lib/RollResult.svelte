@@ -5,7 +5,7 @@
     RollResult,
   } from '../types/Roll';
 
-  import DiceTypeIcon from './DiceTypeIcon.svelte';
+  import DiceTypeIcon from '../assets/icons/components/DiceTypeIcon.svelte';
 
   export let rollResult: RollResult;
   export let primary = false;

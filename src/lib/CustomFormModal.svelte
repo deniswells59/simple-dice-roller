@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { customRolls } from '../store';
+  import type { Roll } from '../types/Roll';
+
   import Button from './Button.svelte';
   import Container from './Container.svelte';
   import DiceForm from './DiceForm.svelte';
@@ -8,6 +11,13 @@
 
   const openModal = () => (showModal = true);
   const closeModal = () => (showModal = false);
+
+  const createCustomRoll = (customRollFormValues: Roll) => {
+    customRolls.update((currentCustomRolls) => [
+      ...currentCustomRolls,
+      customRollFormValues,
+    ]);
+  };
 </script>
 
 <Container>
@@ -18,5 +28,13 @@
 </Container>
 
 <Modal {showModal} {closeModal}>
-  <DiceForm closeForm={closeModal} />
+  <DiceForm
+    containerStyles="pt-2 pb-4 mx-2 border-8"
+    closeForm={closeModal}
+    onSubmit={createCustomRoll}
+  >
+    <Button slot="actions" type="submit" class="w-full mt-6 mb-2" primaryAction
+      >Save</Button
+    >
+  </DiceForm>
 </Modal>

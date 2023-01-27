@@ -3,3 +3,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'fontello';
+  src: url('./assets/icons/fontello.eot?59477500');
+  src: url('./assets/icons/fontello.eot?59477500#iefix')
+      format('embedded-opentype'),
+    url('./assets/icons/fontello.woff?59477500') format('woff'),
+    url('./assets/icons/fontello.ttf?59477500') format('truetype'),
+    url('./assets/icons/fontello.svg?59477500#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.demo-icon {
+  font-family: 'fontello';
+  font-style: normal;
+  font-weight: normal;
+}

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { customRolls, rollResults } from '../store';
+  import generateUniqueID from 'generate-unique-id';
 
   import {
     DICE_LIST,
@@ -13,11 +13,6 @@
   import Dropdown from './Dropdown.svelte';
   import Input from './Input.svelte';
 
-  import { rollDice } from '../utils/rollDice';
-
-  export let staticForm = false;
-  export let closeForm = () => {};
-
   const unpoplulatedRoll: Roll = {
     name: '',
     numOfDice: 1,
@@ -26,7 +21,14 @@
     modifier: 0,
   };
 
-  let customRoll: Roll = { ...unpoplulatedRoll };
+  export let staticForm = false;
+  export let closeForm = () => {};
+  export let onSubmit = (_roll: Roll) => {};
+  export let defaultValues: Roll = unpoplulatedRoll;
+  export let containerStyles: string = '';
+  export let showCloseButton: boolean = true;
+
+  let customRoll: Roll = { ...defaultValues };
 
   const closeAndCleanForm = () => {
     closeForm();
@@ -43,47 +45,27 @@
     customRoll[key] = newValue;
   };
 
-  const createCustomRoll = (e: Event) => {
+  const onSubmitHandler = (e: Event) => {
     e.preventDefault();
 
-    const newCustomRoll = { ...customRoll };
+    const uniqueID = generateUniqueID();
+    const newCustomRoll = { id: uniqueID, ...customRoll };
+
+    onSubmit(newCustomRoll);
+
     closeAndCleanForm();
-
-    customRolls.update((currentCustomRolls) => [
-      ...currentCustomRolls,
-      newCustomRoll,
-    ]);
-  };
-
-  const onRollCustomValues = (e: Event) => {
-    e.preventDefault();
-
-    const rollResult = rollDice({
-      name: 'Custom Roll',
-      numOfDice: customRoll.numOfDice,
-      diceType: customRoll.diceType,
-      modifierOperation: customRoll.modifierOperation,
-      modifier: customRoll.modifier,
-    });
-
-    rollResults.update((rollResultsList) => {
-      return [...rollResultsList, rollResult];
-    });
   };
 </script>
 
-<Container
-  class="border-2 border-black bg-white {!staticForm
-    ? 'pt-2 pb-4 mx-3'
-    : 'py-4 my-1'}"
->
-  <form on:submit={!staticForm ? createCustomRoll : onRollCustomValues}>
+<Container class={`${containerStyles} border-2 border-black bg-white`}>
+  <form on:submit={onSubmitHandler}>
     {#if !staticForm}
       <Input
         class="w-full my-4"
         placeholder="Name"
         id="name"
         type="text"
+        value={customRoll.name}
         required
         onChange={onInputChange}
       />
@@ -147,13 +129,12 @@
       </tr>
     </table>
 
-    {#if !staticForm}
-      <Button type="submit" class="w-full mt-6 mb-2" primaryAction>Save</Button>
+    <slot name="actions" />
+
+    {#if showCloseButton}
       <Button class="w-full mb-2" onClickHandler={closeAndCleanForm}
         >Cancel</Button
       >
-    {:else}
-      <Button type="submit" class="w-full mt-6 mb-2" primaryAction>Roll</Button>
     {/if}
   </form>
 </Container>
