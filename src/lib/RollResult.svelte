@@ -24,9 +24,8 @@
   const getModifierList = ({ modifierOperation, modifier }) => {
     if (modifierOperation !== MODIFIER_OPERATION.NONE) {
       const modSymbol = MODIFIER_SYMBOLS[modifierOperation];
-      return [modSymbol, modifier];
 
-      // return stringToConcat.concat(` ${modSymbol} `, modifier.toString());
+      return [modSymbol, modifier];
     } else {
       return [];
     }
