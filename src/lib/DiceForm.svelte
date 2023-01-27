@@ -24,6 +24,7 @@
   export let staticForm = false;
   export let closeForm = () => {};
   export let onSubmit = (_roll: Roll) => {};
+  export let clearFormOnSubmit: boolean = true;
   export let defaultValues: Roll = unpoplulatedRoll;
   export let containerStyles: string = '';
   export let showCloseButton: boolean = true;
@@ -32,7 +33,10 @@
 
   const closeAndCleanForm = () => {
     closeForm();
-    customRoll = { ...unpoplulatedRoll };
+
+    if (clearFormOnSubmit) {
+      customRoll = { ...unpoplulatedRoll };
+    }
   };
 
   const onInputChange = (event: Event): void => {
