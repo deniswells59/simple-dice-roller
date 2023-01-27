@@ -23,7 +23,7 @@
 <Container>
   <Button
     primaryAction
-    class="my-8 mx-2 min-h-[10%] w-full bg-white animate-appear"
+    class="my-8 mx-2 min-h-[10%] w-full animate-appear"
     onClickHandler={openModal}>+ Create</Button
   >
 </Container>
