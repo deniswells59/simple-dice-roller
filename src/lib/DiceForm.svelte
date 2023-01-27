@@ -57,8 +57,10 @@
   };
 </script>
 
-<Container class={`${containerStyles} border-2 border-black bg-white`}>
-  <form on:submit={onSubmitHandler}>
+<Container
+  class={`${containerStyles} border-2 border-black bg-white md:max-w-xl`}
+>
+  <form on:submit={onSubmitHandler} class="flex flex-col items-center">
     {#if !staticForm}
       <Input
         class="w-full my-4"
@@ -132,9 +134,7 @@
     <slot name="actions" />
 
     {#if showCloseButton}
-      <Button class="w-full mb-2" onClickHandler={closeAndCleanForm}
-        >Cancel</Button
-      >
+      <Button class="w-full" onClickHandler={closeAndCleanForm}>Cancel</Button>
     {/if}
   </form>
 </Container>

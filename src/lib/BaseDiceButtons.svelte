@@ -23,7 +23,7 @@
 <Container header="Base Dice" class="my-6">
   {#each Object.keys(DICE_LIST) as diceType}
     <Button
-      class="sm:-m-[1px] h-20 -my-[1px] w-full bg-white"
+      class="h-20 w-full"
       onClickHandler={() =>
         onBasicClickHandler({ diceType: DICE_LIST[diceType], name: diceType })}
       ><DiceTypeIcon typeOfDice={DICE_LIST[diceType]} /> {diceType}</Button

@@ -43,9 +43,6 @@
 
       <RollResultComponent rollResult={latestRollResult} primary={true} />
     </ul>
-    <Button
-      onClickHandler={() => closeRollList()}
-      cssClass="border-0 w-auto bg-white">Clear X</Button
-    >
+    <Button class="md:w-24" onClickHandler={() => closeRollList()}>Clear X</Button>
   </div>
 {/if}

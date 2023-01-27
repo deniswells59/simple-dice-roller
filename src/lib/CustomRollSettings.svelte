@@ -68,7 +68,7 @@
 
 <Modal showModal={settingsModalOpen} {closeModal}>
   <Container
-    class="flex flex-row mx-2 p-2 border-8 border-black bg-white"
+    class="flex flex-row mx-2 p-2 pb-8 border-8 border-black bg-white md:max-w-xl md:items-center"
     header="Custom Roll Settings"
     visibilityToggle={false}
   >
@@ -79,7 +79,7 @@
         closeForm={closeSettingsForm}
         onSubmit={submitEditForm}
       >
-        <span slot="actions">
+        <span slot="actions" class="w-full">
           <Button class="w-full my-2" type="submit" primaryAction>Save</Button>
           <Button class="w-full my-2" onClickHandler={removeRoll}>Remove</Button
           >
@@ -87,7 +87,77 @@
       </DiceForm>
     {:else}
       <p>Select a roll to edit.</p>
-      <div class="block w-full max-h-100 overflow-scroll">
+      <div class="flex flex-col items-center w-full max-h-100 overflow-scroll max-h-80">
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
+        {#each $customRolls as customRoll}
+          <Button
+            class="my-2 w-full"
+            onClickHandler={() => openSettingsForm(customRoll.id)}
+            >{customRoll.name}</Button
+          >
+        {/each}
         {#each $customRolls as customRoll}
           <Button
             class="my-2 w-full"

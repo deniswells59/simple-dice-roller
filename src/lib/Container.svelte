@@ -17,7 +17,7 @@
 </script>
 
 <div
-  class={`flex content-center justify-start flex-wrap px-[10px] ${
+  class={`flex content-center justify-start flex-wrap px-[10px] md:justify-center md:w-2/3 md:ml-auto md:mr-auto ${
     $$props.class ? $$props.class : ''
   }`}
   data-testid={testId}
