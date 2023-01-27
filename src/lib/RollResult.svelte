@@ -37,20 +37,15 @@
     modifierOperation,
     modifier,
   }): string[] => {
-    let rollsAdded = list.join(' + ');
-
     // Start with list: ['1', '2', '3']
     // Create tuples: [['1', '+'], ['2', '+'], ['3', '+']]
     const listOfNumAndSymbolTuples = list.map((num: string) => [num, '+']);
-    console.log('@@ listOfNumAndSymbolTuples:', listOfNumAndSymbolTuples);
 
     // Flatten tuples: ['1', '+', '2', '+', '3', '+']
     const flattenedNumAndSymbolTuples = [].concat(...listOfNumAndSymbolTuples);
-    console.log('@@ flattenedNumAndSymbolTuples:', flattenedNumAndSymbolTuples);
 
     // Remove hanging addition symbol: ['1', '+', '2', '+', '3']
     const removedLastSymbol = flattenedNumAndSymbolTuples.slice(0, -1);
-    console.log('@@ removedLastSymbol:', removedLastSymbol);
 
     const modifierList = getModifierList({
       modifierOperation,
@@ -59,7 +54,6 @@
 
     const equation = [...removedLastSymbol, ...modifierList];
 
-    console.log('@@ equation:', equation);
     return equation;
   };
 
