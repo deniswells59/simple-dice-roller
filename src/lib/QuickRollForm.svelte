@@ -26,6 +26,7 @@
     staticForm={true}
     onSubmit={onRollCustomValues}
     showCloseButton={false}
+    clearFormOnSubmit={false}
   >
     <Button slot="actions" type="submit" class="w-full mt-6 mb-2" primaryAction
       >Roll</Button
