@@ -30,7 +30,7 @@
 
 <Modal {showModal} {closeModal}>
   <DiceForm
-    containerStyles="pt-2 pb-4 mx-2 border-8"
+    containerStyles="pt-2 pb-4 border-8 md:ml-0 md:mr-0 md:inline-block"
     closeForm={closeModal}
     onSubmit={createCustomRoll}
   >
