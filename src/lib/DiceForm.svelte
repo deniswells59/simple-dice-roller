@@ -53,7 +53,11 @@
     e.preventDefault();
 
     const uniqueID = generateUniqueID();
-    const newCustomRoll = { id: uniqueID, ...customRoll };
+    const newCustomRoll = {
+      ...customRoll,
+      id: uniqueID,
+      name: customRoll.name.trim(),
+    };
 
     onSubmit(newCustomRoll);
 
@@ -71,6 +75,7 @@
         placeholder="Name"
         id="name"
         type="text"
+        maxlength="30"
         value={customRoll.name}
         required
         onChange={onInputChange}
@@ -92,6 +97,7 @@
             placeholder="1"
             id="numOfDice"
             min="1"
+            max="1000"
             type="number"
             value={customRoll.numOfDice}
             required
@@ -126,6 +132,7 @@
             placeholder="0"
             id="modifier"
             min="0"
+            max="1000"
             type="number"
             value={customRoll.modifier}
             onChange={onInputChange}
