@@ -7,7 +7,7 @@
 
 <select
   {...$$restProps}
-  class="border-2 p-3 rounded bg-white {$$props.class}"
+  class="border-2 p-3 rounded bg-white {$$props.class} appearance-none"
   value={selectedValue}
   on:change={onChange}
 >
