@@ -2,7 +2,7 @@
   import Container from './Container.svelte';
 </script>
 
-<Container class="flex flex-col justify-center items-center">
+<Container class="flex flex-col justify-center items-center pb-8">
   <h1 class="text-3xl text-center underline underline-offset-[4px] my-4 leading-10">
     A Simple RPG Dice Roller
   </h1>
