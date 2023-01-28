@@ -66,9 +66,9 @@
 </script>
 
 <Container
-  class={`${containerStyles} border-2 border-black bg-white md:max-w-xl`}
+  class={`${containerStyles} border-2 border-black bg-white md:max-w-xl justify-center w-full`}
 >
-  <form on:submit={onSubmitHandler} class="flex flex-col items-center">
+  <form on:submit={onSubmitHandler} class="flex flex-col items-center w-full">
     {#if !staticForm}
       <Input
         class="w-full my-4"
