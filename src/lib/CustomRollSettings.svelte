@@ -68,13 +68,13 @@
 
 <Modal showModal={settingsModalOpen} {closeModal}>
   <Container
-    class="flex flex-row mx-2 p-2 pb-8 border-8 border-black bg-white md:max-w-xl md:items-center"
+    class="flex flex-row mx-2 pb-4 border-8 border-black bg-white md:max-w-xl md:items-center"
     header="Custom Roll Settings"
     visibilityToggle={false}
   >
     {#if settingsFormOpen}
       <DiceForm
-        containerStyles="border-0 py-0"
+        containerStyles="border-0 py-0 px-0"
         defaultValues={rollToEdit}
         closeForm={closeSettingsForm}
         onSubmit={submitEditForm}
@@ -87,7 +87,9 @@
       </DiceForm>
     {:else}
       <p>Select a roll to edit.</p>
-      <div class="flex flex-col items-center w-full max-h-100 overflow-scroll max-h-80">
+      <div
+        class="flex flex-col items-center w-full max-h-100 overflow-scroll max-h-80"
+      >
         {#each $customRolls as customRoll}
           <Button
             class="my-2 w-full"

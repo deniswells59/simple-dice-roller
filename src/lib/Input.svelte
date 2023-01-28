@@ -5,7 +5,7 @@
   export let onChange = null;
 </script>
 
-<div>
+<div class="w-full">
   <input
     {...$$restProps}
     class="border-2 p-3 rounded disabled:opacity-25 {$$props.class}"

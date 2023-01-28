@@ -29,13 +29,21 @@
 </Container>
 
 <Modal {showModal} {closeModal}>
-  <DiceForm
-    containerStyles="pt-2 pb-4 border-8 md:ml-0 md:mr-0 md:inline-block"
-    closeForm={closeModal}
-    onSubmit={createCustomRoll}
+  <Container
+    class="flex flex-row mx-2 p-2 border-8 border-black bg-white md:max-w-xl md:items-center"
+    visibilityToggle={false}
   >
-    <Button slot="actions" type="submit" class="w-full mt-6 mb-2" primaryAction
-      >Save</Button
+    <DiceForm
+      containerStyles="pb-4 border-0 px-0"
+      closeForm={closeModal}
+      onSubmit={createCustomRoll}
     >
-  </DiceForm>
+      <Button
+        slot="actions"
+        type="submit"
+        class="w-full mt-6 mb-2"
+        primaryAction>Save</Button
+      >
+    </DiceForm>
+  </Container>
 </Modal>
