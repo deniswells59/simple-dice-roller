@@ -1,11 +1,13 @@
 # Simple RPG Dice Roller
 
-Deployed with Netlify at [simplerpgdiceroller.com](https://simplerpgdiceroller.com/)
+Deployed with Netlify at [https://simple-rpg-dice-roller.netlify.app/](https://simple-rpg-dice-roller.netlify.app/)
 
-[![alt Simple RPG Dice Roller Screenshot](./dev-assets/screenshot.png 'Simple RPG Dice Roller Screenshot')](<(https://simplerpgdiceroller.com/)>)
+![alt Simple RPG Dice Roller Screenshot](./dev-assets/screenshot.png 'Simple RPG Dice Roller Screenshot')
 
 # Info
+
 Built with
+
 - [Svelte](https://github.com/sveltejs/svelte)
 - [Typescript](https://github.com/microsoft/TypeScript)
 - [TailwindCSS](https://github.com/tailwindlabs/tailwindcss)
@@ -14,11 +16,13 @@ Built with
 # Getting Started
 
 Install dependencies,
+
 ```
 yarn install
 ```
 
 Start vite server
+
 ```
 yarn dev
 ```
